@@ -8,7 +8,6 @@ function UserDetails (user) {
     <div>
       {!!user.score && <li className="list-group-item"><h3>Score: {user.score}</h3></li>}
       <li className="list-group-item"><img src={user.info.avatar_url} className="img-rounded img-response" style={styles.imageSize}/></li>
-      {user.info.name && <li className="list-group-item">Location: {user.info.location}</li>}
       <li className="list-group-item">Username: {user.info.login}</li>
       {user.info.location && <li className="list-group-item">Location: {user.info.location}</li>}
       {user.info.company && <li className="list-group-item">Company: {user.info.company}</li>}

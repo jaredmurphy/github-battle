@@ -1,6 +1,8 @@
 var styles = {
-  transparentBg: {
-    background: 'transparent'
+  greyBg: {
+    backgroundColor: '#d3d3d3',
+    textAlign: 'center',
+    paddingBottom: '50px'
 
   },
   imageSize: {
@@ -8,6 +10,15 @@ var styles = {
   },
   space: {
     marginTop: '20px'
+  },
+  center: {
+    textAlign: 'center'
+  },
+  marginZero: {
+    margin: '0 auto'
+  },
+  inlineBlock: {
+    display: 'inline-block'
   }
 }
 

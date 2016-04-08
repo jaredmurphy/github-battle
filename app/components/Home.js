@@ -3,6 +3,7 @@ var center = require('../styles').center;
 var marginZero = require('../styles').marginZero;
 var inlineBlock = require('../styles').inlineBlock;
 var greyBg = require('../styles').greyBg;
+var title = require('../styles').title;
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
@@ -10,7 +11,7 @@ var Home = React.createClass({
   render: function() {
     return (
       <div style={greyBg}> 
-        <h1 style={center} >Open Source Champion</h1>
+        <h1 style={title} >Open Source Champion</h1>
         <p style={center}>
           What even is a jQuery?
         </p>

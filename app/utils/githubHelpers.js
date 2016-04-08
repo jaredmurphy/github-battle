@@ -24,6 +24,7 @@ function getPlayersData(player) {
     .then(getTotalStars)
     .then(function (totalStars) {
       return {
+        public_repos: player.public_repos,
         followers: player.followers,
         totalStars: totalStars
       }
@@ -32,8 +33,8 @@ function getPlayersData(player) {
 
 function calculateScores (players) {
   return [
-    players[0].followers * 3 + players[0].totalStars,
-    players[1].followers * 3 + players[1].totalStars
+   players[0].followers * 3 + players[0].totalStars + players[0].public_repos,
+   players[1].followers * 3 + players[1].totalStars + players[1].public_repos 
   ] 
 }
 
@@ -43,6 +44,7 @@ var helpers = {
       return getUserInfo(username);
     })).then(function (info) {
       return info.map(function(user) {
+        console.log(user.data.public_repos);
         return user.data;
       });
     }).catch(function (err) {
@@ -52,7 +54,6 @@ var helpers = {
   battle: function (players) {
     var playerOneData = getPlayersData(players[0]);
     var playerTwoData = getPlayersData(players[1]);
-
     return axios.all([playerOneData, playerTwoData])
       .then(calculateScores)
       .catch(function (err) {console.warn('Error in getPlayersInfo: ', err)})

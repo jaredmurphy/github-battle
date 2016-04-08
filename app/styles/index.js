@@ -5,6 +5,10 @@ var styles = {
     paddingBottom: '50px'
 
   },
+  title: {
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
   imageSize: {
     width: '300px'
   },

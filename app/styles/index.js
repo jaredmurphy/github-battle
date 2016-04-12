@@ -1,10 +1,15 @@
 var styles = {
-  greyBg: {
-    backgroundColor: '#d3d3d3',
+  contentDiv: {
     textAlign: 'center',
-    paddingBottom: '50px'
+    paddingBottom: '50px',
+    background: 'transparent'
 
   },
+  transparentBg: {
+    background: 'transparent'
+
+  },
+
   title: {
     textAlign: 'center',
     fontWeight: 'bold'

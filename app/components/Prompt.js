@@ -1,23 +1,23 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var transparentBg = require('../styles').transparentBg;
+var contentDiv = require('../styles').contentDiv;
 
 function Prompt(props){
   return (
-      <div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
+      <div style={contentDiv}>
         <h1>{props.header}</h1>
         <div className="col-sm-12">
           <form onSubmit={props.onSubmitUser}>
-            <div className="form-group">
+            <div className="input-field col s6">
               <input 
-                className="form-control" 
+                className="mdl-textfield__input" 
                 placeholder="Github Username" 
                 onChange={props.onUpdateUser} 
                 value={props.username} 
                 type="text" />
             </div>
             <div className="form-group col-sm-4 col-sm-offset-4">
-              <button className="btn btn-block btn-success" type="submit">
+              <button type='submit' className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary' >
                   Continue
               </button>
             </div>

@@ -1,3 +1,9 @@
-# github-battle
+# Open Source Champion
 
-[![ScreenShot](http://i.imgur.com/t2b67dH.png)](https://youtu.be/7-X8Ea_NQro)
+### I built an app that compares multiple users on Github, generates a score and returns a winner. 
+
+###Made with: Node.js, React.js, Express, Materialize.css, Bootstrap, and the Github API.
+
+####Currently under construction to: add Rails/postgreSQL for leaderboard, and convert all styling to Material Design
+
+[![Screenshot](http://i.imgur.com/t2b67dH.png)](https://youtu.be/boYnvroEK1Y)

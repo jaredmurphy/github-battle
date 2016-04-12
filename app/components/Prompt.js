@@ -1,14 +1,14 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var contentDiv = require('../styles').contentDiv;
+var styles = require('../styles');
 
 function Prompt(props){
   return (
-      <div style={contentDiv}>
+      <div style={styles.contentDiv}>
         <h1>{props.header}</h1>
         <div className="col-sm-12">
           <form onSubmit={props.onSubmitUser}>
-            <div className="input-field col s6">
+            <div className="input-field col s6" style={styles.form}>
               <input 
                 className="mdl-textfield__input" 
                 placeholder="Github Username" 

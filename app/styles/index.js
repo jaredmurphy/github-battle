@@ -21,14 +21,22 @@ var styles = {
     marginTop: '20px'
   },
   center: {
-    textAlign: 'center'
+    textAlign: 'center',
+    width: '45%',
+    paddingBottom: '50px',
+    margin: '0 auto'
   },
   marginZero: {
     margin: '0 auto'
   },
   inlineBlock: {
     display: 'inline-block'
-  }
-}
+  },
+
+  form: {
+    width: '40%',
+    margin: '0 auto',
+    textAlign: "center"
+}}
 
 module.exports = styles;

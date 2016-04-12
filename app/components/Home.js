@@ -8,6 +8,10 @@ var greyBg = require('../styles').greyBg;
 var title = require('../styles').title;
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
+var Sample = require('../functions/sample.js');
+
+var githubQuotes = ['The trademark mascot of GitHub is Octocat, an anthropomorphized cat with octopus limbs, done in a manga style.', 'GitHub, Inc. was originally known as Logical Awesome', 'The shortcut t + w will open a fuzzy search on any Github repository'];
+
 
 var Home = React.createClass({
   render: function() {
@@ -15,7 +19,7 @@ var Home = React.createClass({
       <div style={contentDiv} className='jumbotron col-sm-12 text-center'>
         <h1> Open Source Champion</h1>
         <p style={center}>
-          What even is a jQuery?
+          {Sample(githubQuotes)}
         </p>
         <div style={inlineBlock}>
           <Link to='/playerOne'>

@@ -7,9 +7,9 @@ var Link = require('react-router').Link;
 
 function StartOver() {
   return (
-    <div className="col-sm-12" style={styles.space}>
+    <div style={styles.space}>
       <Link to="playerOne">
-        <button type='button' className="btn btn-lg btn-danger"> 
+       <button type="button" className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'> 
           START OVER
         </button>
       </Link>
@@ -27,7 +27,7 @@ function Results (props) {
 
     if (props.scores[0] === props.scores[1]) {
       return (
-        <div className="jumbotron col-sm-12 text-center" styles={styles.transparentBg}>
+        <div styles={styles.transparentBg}>
         <h1>It's a tie!</h1>
         <StartOver />
       </div>
@@ -48,7 +48,7 @@ function Results (props) {
           <UserDetails score={props.scores[losingIndex]} info={props.playersInfo[losingIndex]} />
         </UserDetailsWrapper>
       </div>
-      <StartOver />
+        < StartOver />
     </div>
   )
     

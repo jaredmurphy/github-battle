@@ -20,13 +20,13 @@ function ConfirmBattle (props) {
               <UserDetails info={props.playersInfo[1]} />
             </UserDetailsWrapper>
         </div>
-        <div className="col-sm-8 col-sm-offset-2">
-            <div className="col-sm-12" style={styles.space}>
+        <div>
+            <div style={styles.space}>
               <button type="button"className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary' onClick={props.onInitiateBattle}>
                   Initiate Battle 
               </button>
             </div>
-            <div className="col-sm-12" style={styles.space}>
+            <div style={styles.space}>
               <Link to="/playerOne">
                 <button type="button" className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'> 
                   Reselect Players 

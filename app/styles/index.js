@@ -5,6 +5,10 @@ var styles = {
     background: 'transparent'
 
   },
+  unorderedList: {
+    listStyle: "none"
+
+  },
   transparentBg: {
     background: 'transparent'
 

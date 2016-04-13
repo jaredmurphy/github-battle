@@ -19,11 +19,11 @@ var Home = React.createClass({
       <div style={contentDiv} className='jumbotron col-sm-12 text-center'>
         <h1> Open Source Champion</h1>
         <p style={center}>
-          {Sample(githubQuotes)}
+          {/*Sample(githubQuotes)*/}
         </p>
         <div style={inlineBlock}>
           <Link to='/playerOne'>
-            <button type='button' className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' >
+            <button type='button' className='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary' >
               Get Started
             </button>
           </Link>

@@ -1,6 +1,6 @@
 # Open Source Champion
 
-### I built an app that compares multiple users on Github, generates a score and returns a winner. 
+### I'm an app that compares multiple users on Github, generates a score and returns a winner. 
 
 ###Made with: Node.js, React.js, Express, Materialize.css, Bootstrap, and the Github API.
 

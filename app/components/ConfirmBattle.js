@@ -10,9 +10,9 @@ var UserDetails = require('./UserDetails');
 function ConfirmBattle (props) {
   return props.isLoading === true
     ? <p>LOADING</p>
-    : <div className="jumbotron col-sm-12 text-center" style={styles.contentDiv}>
+    : <div style={styles.contentDiv}>
         <h1>Confirm Players</h1>
-        <div className="col-sm-8 col-sm-offset-2">
+        <div>
             <UserDetailsWrapper header='Player One'>
               <UserDetails info={props.playersInfo[0]} />
             </UserDetailsWrapper>

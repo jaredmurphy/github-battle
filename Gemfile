@@ -17,13 +17,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'better_errors'
 gem 'factory_girl'
 gem 'rspec'
-gem 'cucumber'
 gem 'pry'
-gem 'capybara'
+gem 'launchy'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'capybara'
   gem 'byebug'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
 end
 
 group :development do

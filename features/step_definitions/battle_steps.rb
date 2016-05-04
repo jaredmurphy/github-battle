@@ -7,10 +7,6 @@ Given(/^I fill in "([^"]*)" with a username$/) do |arg1|
 pending # Write code here that turns the phrase above into concrete actions
 end
 
-Given(/^I press "([^"]*)"$/) do |arg1|
-pending # Write code here that turns the phrase above into concrete
-actions
-end
 
 Then(/^I should see the results of the battle$/) do
 pending # Write code here that turns the phrase above into concrete

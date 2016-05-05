@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+    console.log('js loaded');
+    
+   // var url = window.location.href;  
+    $('.player_select').click(function() {
+        var player_one = $('.player_one').val();
+        window.location.href = "/battle/" + player_one;
+    });
+
+});

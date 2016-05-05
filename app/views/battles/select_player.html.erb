@@ -1,0 +1,9 @@
+<% if @player == "Player One" %>
+    <label><%= @player %></label>
+    <input class="player_one" type="text" name="player_one" />
+    <button class="player_select">Select Player One</button>
+<% else %>
+    <label><%= @player %></label>
+    <input class="player" type="text" name="player" />
+    <%= button_to "Select Player Two", new_battle_path, method: :get %>
+<% end %>

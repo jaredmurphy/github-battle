@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OpenSourceChampion</title>
+  <title>Open Source Champion</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,11 +9,13 @@
 <body>
 
 <header>
-    <h1><%= @title %></h1>
+    <h1>Open Source Champion</h1>
     <ul>
         <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Battle', new_battle_path %></li>
+        <%#<%= link_to 'Battle', new_battle_path %>
+        <li><a href="/battle">Battle</a></li>
         <li><%= link_to 'Leaderboard', users_path %></li>
+        <li><%= link_to 'Recent Battles', battles_path %></li>
     </ul>
 </header>
 

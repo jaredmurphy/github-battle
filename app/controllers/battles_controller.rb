@@ -1,5 +1,18 @@
 class BattlesController < ApplicationController
+
+    def select_player        
+        # checks to see if a first player has been selected
+        if params[:player_two].nil?
+            @player = "Player One"
+        else 
+            @player = "Player Two"
+        end
+    end
+
+
     def new
+        @player_one = params[:player_one]
+        @player_two = params[:player_two]
         @battle = Battle.new
     end
 

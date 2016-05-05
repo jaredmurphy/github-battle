@@ -8,11 +8,16 @@
 </head>
 <body>
 
-<h1><%= @title %></h1>
-<%= link_to 'Battle', battle_path %>
-<%= link_to 'Leaderboard', leaderboard_path %>
-<%= link_to 'Home', root_path %>
-<%= yield %>
+<header>
+    <h1><%= @title %></h1>
+    <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Battle', new_battle_path %></li>
+        <li><%= link_to 'Leaderboard', users_path %></li>
+    </ul>
+</header>
 
+
+<%= yield %>
 </body>
 </html>

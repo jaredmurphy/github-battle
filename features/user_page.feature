@@ -3,7 +3,6 @@ Feature: View User Page
     As a user
     I want to be able to view individual user pages
 
-
     Scenario: Viewing User's Page from Leaderboard
         Given I am on an individual user's page
         Then I should see the user's "High Score" 

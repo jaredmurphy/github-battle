@@ -1,3 +1,12 @@
-<h2> Select Player One </h2>
+<h2> Initiate New Battle </h2>
 
-<h2> Select Player Two </h2>
+<%= form_for @battle do |f| %>
+    <%= f.label :player_one %>
+    <%= f.text_field :winner_id %><br />
+
+    <%= f.label :player_two %>
+    <%= f.text_field :loser_id %><br />
+
+    <%= f.submit 'Initiate Battle' %>
+<% end %>
+

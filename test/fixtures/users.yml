@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  location: MyString
+  blog: MyString
+  high_score: 1
+  avatar_url: MyString
+  github_url: MyString
+
+two:
+  username: MyString
+  location: MyString
+  blog: MyString
+  high_score: 1
+  avatar_url: MyString
+  github_url: MyString

@@ -5,6 +5,7 @@ Feature: Leaderboard
 
     Scenario: Viewing github users sorted by wins
         Given I am on the leaderboard page
+        And the following users exist
         And I select "Sort By Wins"
         Then I should see github users sorted by number of wins
     

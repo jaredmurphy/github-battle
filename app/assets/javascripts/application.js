@@ -68,6 +68,9 @@ $(document).ready(function() {
         console.log('no ' + splitUrl.length)
     }
 
+
+
+
 }); // ends document.ready
 
 // select players
@@ -78,5 +81,20 @@ $(document).on('page:change', function () {
         var url = window.location.href;
         window.location.href = url + "/" + player;
         return false;
+    });
+
+
+    $('.generateWinner').click(function() {
+        var playerOneScore = $('.p_one_score').text();
+        var playerTwoScore = $('.p_two_score').text();
+        var winner;
+
+        if (playerOneScore > playerTwoScore) {
+           winner = $('.p_one_name').text(); 
+        } else if (playerTwoScore > playerOneScore) {
+            winner = $('.p_two_name').text();
+        }
+        $('.winner').append(winner + " won!");
+        
     });
 }); // ends document.on page:change

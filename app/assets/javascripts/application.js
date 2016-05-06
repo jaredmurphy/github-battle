@@ -1,15 +1,3 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
@@ -17,11 +5,32 @@
 
 $(document).ready(function() {
     console.log('js loaded');
-    
-   // var url = window.location.href;  
-    $('.player_select').click(function() {
-        var player_one = $('.player_one').val();
-        window.location.href = "/battle/" + player_one;
-    });
+    var url = window.location.href
+    var splitUrl = url.split('/')
 
-});
+    // checks to see if app is ready for ajax to github
+    if (splitUrl.length === 6) {
+        var playerOne = splitUrl[4];
+        var playerTwo = splitUrl[5];
+        console.log('player one: ' + playerOne);
+        console.log('player two: ' + playerTwo);
+           
+
+
+        
+    } else {
+        console.log('no ' + splitUrl.length)
+    }
+
+}); // ends document.ready
+
+// select players
+$(document).on('page:change', function () {
+    $('.player_select').click(function() {
+        event.preventDefault();
+        var player = $('.player').val();
+        var url = window.location.href;
+        window.location.href = url + "/" + player;
+        return false;
+    });
+}); // ends document.on page:change

@@ -1,12 +1,9 @@
-<h2> Initiate New Battle </h2>
+<h2> Confirm Battle </h2>
 
-<%= form_for @battle do |f| %>
-    <%= f.label :player_one %>
-    <%= f.text_field :winner_id %><br />
+<h3> Player One </h3>
+<%= @player_one %>
 
-    <%= f.label :player_two %>
-    <%= f.text_field :loser_id %><br />
+<h3> Player Two </h3>
+<%= @player_two %>
 
-    <%= f.submit 'Initiate Battle' %>
-<% end %>
 

@@ -1,0 +1,18 @@
+<h1> Select <%= @player %> </h1>
+
+<input class="player" type="text" name="player" />
+<button class="player_select">Select Player One</button>
+
+<%= form_for @user do |f| %>
+    <%= f.hidden_field :username, :class => 'username' %><br />
+
+    <%= f.hidden_field :location, :class => 'location' %><br />
+
+    <%= f.hidden_field :blog, :class => 'blog' %><br />
+
+    <%= f.hidden_field :avatar_url, :class => 'avatar_url' %><br />
+
+    <%= f.hidden_field :github_url, :class => 'github_url'  %><br />
+
+    <%= f.submit 'Add Player' %>
+<% end %>

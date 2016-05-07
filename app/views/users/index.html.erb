@@ -2,5 +2,9 @@
 <h2> Leaderboard </h2> 
 <h4> Top Users </h4>
 <% @users.each do |user| %>
-    <%= user.user_name %>
+    <%= user.username %>
+    <%= user.blog %>
+    <%= user.github_url %>
+    <img src="<%= user.avatar_url %> />
+    <%= user.location %> 
 <% end %>

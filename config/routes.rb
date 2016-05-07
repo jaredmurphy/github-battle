@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     resources :users
 
     # selecting players for battle
-    get '/battle', to: 'battles#select_player'
-    get '/battle/:player_one', to: 'battles#select_player'
+    get '/battle', to: 'users#new'
+    get '/battle/:player_one', to: 'users#new'
     get '/battle/:player_one/:player_two', to: 'battles#new'
     
 end

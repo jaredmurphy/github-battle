@@ -30,7 +30,8 @@ $(document).on('page:change', function () {
                 $('.blog').val(data.blog)
                 $('.location').val(data.location);
                 $('.avatar_url').val(data.avatar_url);
-                $('.github_login').val(data.html_url);
+                $('.github_url').val(data.html_url);
+                
             }
          }); // ends player one ajax call
     });

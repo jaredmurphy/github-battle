@@ -4,15 +4,24 @@ class UsersController < ApplicationController
         @users = User.all
     end
 
-    def new
-        @user = User.new
+    #def new
+    #    @user = User.new
         
         #checks if first player has already been selected
+    #    if params[:player_one].nil?
+    #        @player = "Player One"
+    #    else
+    #        @player = "Player Two"
+    #    end
+    #end
+
+    def select 
         if params[:player_one].nil?
             @player = "Player One"
         else
             @player = "Player Two"
         end
+
     end
 
     def create

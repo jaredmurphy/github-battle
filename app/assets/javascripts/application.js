@@ -9,6 +9,17 @@ $(document).ready(function() {
 
 // select players
 $(document).on('page:change', function () {
+    // new funcitonality#
+    $('.choose_player').click(function() {
+        event.preventDefault();
+        var url = window.location.href;
+        var player = $('.player').val();
+        console.log(player);
+        window.location = url + "/" + player;
+    });
+
+    // old functionality
+
     $('.player_select').click(function() {
         //event.preventDefault();
         var player = $('.player').val();

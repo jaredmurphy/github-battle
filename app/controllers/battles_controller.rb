@@ -28,7 +28,7 @@ class BattlesController < ApplicationController
 
         @winner = generate_winner(player_one, player_two)
         @battle = Battle.new
-        binding.pry
+       # binding.pry
     end
 
     def generate_winner(player_one, player_two)

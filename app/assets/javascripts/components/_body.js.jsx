@@ -1,4 +1,20 @@
 var Body = React.createClass({
+    handleDelete(id) {
+        $.ajax({
+            url: `/api/v1/users/${id}.json`,
+            type: 'DELETE', 
+            success: () => {
+                this.removeUserClient(id);
+            }
+        });
+    },
+    removeUserClient(id) {
+        var newUsers = this.state.users.filter((user) => {
+            return user.id != id;
+        });
+
+        this.setState({ users: newUsers });
+    },
     getInitialState() {
         return { users: [] }
     },
@@ -11,14 +27,14 @@ var Body = React.createClass({
     handleSubmit(user) {
         var newState = this.state.users.concat(user);
         this.setState({ users: newState })
-        console.log(this)
+        //console.log(this)
 
     },
     render() {
         return (
             <div>
                 < NewUser handleSubmit={this.handleSubmit} />
-                < TopUsers users={this.state.users} />
+                < TopUsers users={this.state.users} handleDelete={this.handleDelete}/>
             </div>
         )
     }

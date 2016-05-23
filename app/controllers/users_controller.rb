@@ -26,11 +26,14 @@ class UsersController < ApplicationController
     end
 
     def create
+        #@user = find_or_initialize_by_username(params[:user_name])
+
+        #binding.pry
         #wasnt able to grab url params for rendering on create method
         @user = User.new(user_params)
         @player_one = @user.username
         if @user.save 
-            #redirect_to :action => :index 
+          redirect_to :action => :index 
             redirect_to "/battle/#{@player_one}"
         else 
             redirect_to :action => :new 

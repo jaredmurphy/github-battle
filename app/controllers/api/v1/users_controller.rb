@@ -6,6 +6,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 
     def create
         respond_with :api, :v1, User.create(user_params)
+
     end
 
     def destroy

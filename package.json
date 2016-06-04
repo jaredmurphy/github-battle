@@ -1,0 +1,23 @@
+{
+  "name": "github-battle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaredmurphy/github-battle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaredmurphy/github-battle/issues"
+  },
+  "homepage": "https://github.com/jaredmurphy/github-battle#readme",
+  "dependencies": {
+    "react": "^15.1.0"
+  }
+}

@@ -1,25 +1,26 @@
-var path = require("path");
 module.exports = {
-    entry: './components/app.jsx',
-    output: {
-        path: path.resolve(__dirname, "build"),
-        publicPath: "/",
-        filename: "bundle.js"
-    }, 
-    module: {
-        loaders: [
-            {
-                test: /\.jsx?$/, 
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
-                query: {
-                    presets: ['react', 'es2015']
-                }
-            }
-        ]
-    },
-    resolve: {
-        extensions: ['', '.js', '.jsx']
-    }
-}
-
+  entry: [
+    './src/index.js'
+  ],
+  output: {
+    path: __dirname,
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [{
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        presets: ['react', 'es2015', 'stage-1']
+      }
+    }]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './'
+  }
+};

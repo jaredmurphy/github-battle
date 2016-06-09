@@ -7,10 +7,9 @@ export default class App extends Component {
   render() {
     return (
       <div>
-
-        <Header />
-        <Home />
-
+        < Header />
+        < Home />
+        //{ this.props.children }
       </div>
     );
   }

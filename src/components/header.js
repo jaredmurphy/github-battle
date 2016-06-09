@@ -6,10 +6,15 @@ import { PageHeader } from 'react-bootstrap';
 export default class Header extends Component {
   render() {
     return (
-      <PageHeader className="header-card card">
-        <h1>Open Source Champion</h1>
-        <Menu />
-      </PageHeader>
+      <div>
+        <PageHeader className="header-card card">
+          Open Source Champion
+          <Menu />
+        </PageHeader>
+
+      </div>
+
+
     );
   }
 

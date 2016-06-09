@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 export default class Menu extends Component {
   render() {
     return (
-      <ul className="menu-ul">
-        <li className="float menu-li card-content">Battle</li>
-        <li className="float menu-li card-content">Leaderboard</li>
-        <li className="float menu-li card-content">About</li>
+      <ul>
+        <li><Link to={'/battle'}>Battle</Link></li>
+        <li><Link to={'/leaderboard'}>Leaderboard</Link></li>
+        <li><Link to={'/about'}>Battle</Link></li>
       </ul>
-
     );
   }
 }

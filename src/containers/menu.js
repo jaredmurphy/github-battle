@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 export default class Menu extends Component {

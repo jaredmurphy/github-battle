@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { Jumbotron, Button } from 'react-bootstrap';
-
+import { Link } from 'react-router';
 
 class Home extends Component {
   render() {
     return (
-      <Jumbotron>
+      <div>
         <h3>Welcome!</h3>
         <p>Select Battle, Leaderboard, or About to get started</p>
-        <p><Button bsStyle="primary">Learn more</Button></p>
-      </Jumbotron>
+        <Link to={"/about"}><button>Learn more</button></Link>
+      </div>
 
     );
   }

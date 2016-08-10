@@ -1,24 +1,28 @@
-#Pleasant Ghost
-Boilerplate that handles Node.js environment set up so you can start developing NOW.
+# Example Express Auth App
 
-###What You Get
-* React, React-DOM, React-Router
-* Redux, Redux-Promise, Redux-Form
-* Babel
-* Webpack
-* Axios
-* jQuery
-* Materialize
-* Lodash
-* Mocha
-* Chai
+### Setup
 
-###Usage
-- Clone this repo
-- npm install
-- npm start
-- Go to localhost:8080
-- See your first working React component in action
+1. Install packages:
 
-###Contribute
-Fork, make changes, submit pull request.
+    ```
+    npm install
+    ```
+
+1. Create a database and run the schema file. In PostgreSQL:
+
+    ```
+    createdb auth
+    psql -d auth -f db/schema.sql
+    ```
+
+1. Add your database credentials to `db/db.js` on line 2:
+
+    ```
+    const db = pgp('postgres://xxxxxxx@localhost:5432/auth');
+    ```
+
+1. Start the server:
+
+    ```
+    npm start
+    ```

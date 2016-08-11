@@ -11,7 +11,9 @@ $(document).ready(function() {
 
     // images carousel
     $('.carousel').carousel();
-    
+    setInterval(function() {
+      $('.carousel').carousel('next');
+    }, 1800);
 
 
 

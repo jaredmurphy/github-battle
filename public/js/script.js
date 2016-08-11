@@ -9,6 +9,10 @@ $(document).ready(function() {
       $(this).addClass('active');
     });
 
+    // images carousel
+    $('.carousel').carousel();
+    
+
 
 
 }); // ends doc.ready

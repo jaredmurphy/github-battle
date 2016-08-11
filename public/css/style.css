@@ -9,3 +9,8 @@ h1 {
 }
 
 .center-block { float: none }
+
+.nav-wrapper {
+  margin-left: 20px;
+  margin-right: 20px;
+}

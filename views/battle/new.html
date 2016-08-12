@@ -32,23 +32,41 @@
 <div class="container">
   <h1 class="center-align"> BATTLE </h1>
 
-  <div id="player_one" class="col s12 player_card">
+  <div id="players" class="col s6 m6">
+
+    <!-- player one -->
     <div class="row">
      <div class="col s12 m6">
        <div class="card">
-         <div id="player_one_card" class="card-content">
+         <div id="player_one_card" class="card-content player_card">
            <span class="card-title">Player One</span>
            <p>Enter a Github username for Player One</p>
            <br />
-           <input id="player_one_input" placeholder="Github username">
+           <input id="player_one_input" class="player_input player_one_input" placeholder="Github username">
          </div>
          <div class="card-action">
-           <button id="player_one_button" class="disabled btn">Select User</button>
+           <button class="disabled btn player_button player_one_button">Select User</button>
+         </div>
+       </div>
+     </div>
+
+     <!-- player 2 -->
+     <div class="col s12 m6">
+       <div class="card">
+         <div id="player_two_card" class="card-content player_card">
+           <span class="card-title">Player Two</span>
+           <p>Enter a Github username for Player Two</p>
+           <br />
+           <input id="player_two_input" class="player_input player_two_input" placeholder="Github username">
+         </div>
+         <div class="card-action">
+           <button class="disabled btn player_button player_two_button">Select User</button>
          </div>
        </div>
      </div>
    </div>
-  </div>
+
+  </div> <!-- ends players div -->
 
 </div>
 </body>

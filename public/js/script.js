@@ -20,34 +20,73 @@ $(document).ready(function() {
     // github username api functions //
     ///////////////////////////////////
 
+    // player select
+    var players = {
+      player_one: {
+        selected: false,
+        username: ''
+      },
+      player_two: {
+        selected: false,
+        username: ''
+      }
+    };
+
     // ajax call to github
     var getGithubUser = function() {
-      //clearTimeout(timer);
-      var user = $('#player_one_input').val();
-      $('#player_one_input').val('');
-      $('img.select_user').remove();
+      if (!players.player_one.selected) {
+        var player = 'player_one';
+      } else {
+        var player = 'player_two';
+      }
+
+      var user = $('#' + player + '_input').val();
+      $('#' + player + '_input').val('');
+      $('img.select_' + player).remove();
       $('#warningMessage').remove();
 
       $.ajax({
         type: "GET",
         url: "https://api.github.com/users/" + user,
         success: function(data){
-          $('#player_one_card').append('<img class="select_user" src=' + data.avatar_url + '/>');
-          $('#player_one_button').removeClass('disabled');
-          $('#player_one_button').addClass('waves-effect waves-light');
+          $('#' + player + '_card').append('<img class="select_user ' + player + '_img tooltipped" data-position="right" data-delay="50" data-tooltip=' + data.login + ' src=' + data.avatar_url + '/>');
+          $('.tooltipped').tooltip({delay: 50});
+          $('.' + player + '_img').trigger('mouseenter');
+          $('.' + player + '_button').removeClass('disabled');
+          $('.' + player + '_button').addClass('waves-effect waves-light');
+          $('.' + player + 'input').remove();
+          players.player_one.username = user;
         },
         error: function(error){
-          $('#player_one_button').addClass('disabled');
-          $('#player_one_button').removeClass('waves-effect waves-light');
+          $('.' + player + '_button').removeClass('waves-effect waves-light');
+          $('.' + player + '_button').addClass('disabled');
           var warningMessage = $('<p id="warningMessage">Github Username ' + error.responseJSON.message + '</p>');
           warningMessage.addClass('danger');
-          $('#player_one_card').append(warningMessage);
+          $('#' + player + '_card').append(warningMessage);
         }
       });
     };
 
+    $('.player_button').click(function() {
+      if (!$(this).hasClass('disabled')) {
+        if ($(this).hasClass('player_one_button')){
+          var player = 'player_one';
+        } else if ($(this).hasClass('player_two_button')){
+          var player = 'player_two';
+        }
+        players[player].selected = true;
+        $('.' + player + '_img').trigger('mouseleave');
+        $('.' + player + '_button').text(players.player_one.username + " selected!");
+        $('.' + player + '_input').remove();
+      }
+      if (players.player_one.selected === true && players.player_two.selected === true){
+        $('#players p').remove();
+        $('#players').append('<button class="btn waves-effect waves-light red darken-1 center"> BATTLE! </button>');
+      }
+    });
+
     var timer;
-    $('#player_one_input').on('keyup', function(e) {
+    $('.player_input').on('keyup', function(e) {
       clearTimeout(timer);
       if ($(this).val()){
         timer = setTimeout(getGithubUser, 1000);

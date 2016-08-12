@@ -17,3 +17,7 @@ h1 {
 img.select_user {
   max-width: 180px;
 }
+
+#warningMessage {
+  color: red;
+}

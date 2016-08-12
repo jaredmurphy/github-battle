@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <script type="text/javascript" src="./js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
 </head>
 <body>
@@ -31,6 +32,23 @@
 <div class="container">
   <h1 class="center-align"> BATTLE </h1>
 
+  <div id="player_one" class="col s12 player_card">
+    <div class="row">
+     <div class="col s12 m6">
+       <div class="card">
+         <div id="player_one_card" class="card-content">
+           <span class="card-title">Player One</span>
+           <p>Enter a Github username for Player One</p>
+           <br />
+           <input id="player_one_input" placeholder="Github username">
+         </div>
+         <div class="card-action">
+           <button id="player_one_button" class="disabled btn">Select User</button>
+         </div>
+       </div>
+     </div>
+   </div>
+  </div>
 
 </div>
 </body>

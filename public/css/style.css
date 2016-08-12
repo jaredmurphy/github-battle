@@ -13,3 +13,7 @@ h1 {
 .about_card {
   margin-top: 25px;
 }
+
+img.select_user {
+  max-width: 200px;
+}

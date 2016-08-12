@@ -11,7 +11,7 @@ $(document).ready(function() {
     $('.carousel').carousel();
     setInterval(function() {
       $('.carousel').carousel('next');
-    }, 1800);
+    }, 1500);
 
     // about page tabs
     $('ul.tabs').tabs();
@@ -24,11 +24,11 @@ $(document).ready(function() {
     var players = {
       player_one: {
         selected: false,
-        username: ''
+        data: ''
       },
       player_two: {
         selected: false,
-        username: ''
+        data: ''
       }
     };
 
@@ -55,7 +55,7 @@ $(document).ready(function() {
           $('.' + player + '_button').removeClass('disabled');
           $('.' + player + '_button').addClass('waves-effect waves-light');
           $('.' + player + 'input').remove();
-          players.player_one.username = user;
+          players[player].data = data;
         },
         error: function(error){
           $('.' + player + '_button').removeClass('waves-effect waves-light');
@@ -82,6 +82,7 @@ $(document).ready(function() {
       if (players.player_one.selected === true && players.player_two.selected === true){
         $('#players p').remove();
         $('#players').append('<button class="btn waves-effect waves-light red darken-1 center"> BATTLE! </button>');
+        console.log(players);
       }
     });
 

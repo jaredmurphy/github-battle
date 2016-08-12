@@ -22,6 +22,7 @@ $(document).ready(function() {
 
     // ajax call to github
     var getGithubUser = function() {
+      clearTimeout(timer);
       $.ajax({
         type: "GET",
         url: "https://api.github.com/users/" + $('#player_one_input').val(),

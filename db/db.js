@@ -80,7 +80,7 @@ var create_or_update_githubUser = function(req, res, next){
       db.one("UPDATE githubUsers SET github_id=$1, login=$2, image=$3, followers=$4, following=$5, public_repos=$6, public_gists=$7, github_url=$8, location=$9, blog=$10, company=$11, created=$12, email=$13 WHERE github_id=$1;",
         [github_id, login, , image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
       .then(function(user){
-        console.log(user);
+        console.log("updated", user);
       })
     } // ends update user
 
@@ -91,7 +91,7 @@ var create_or_update_githubUser = function(req, res, next){
       db.none("INSERT INTO githubUsers (github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);",
         [github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
       .then(function(user){
-        console.log("user", user);
+        console.log("created", user);
         next();
       }).catch(function(err){
         console.log(err)

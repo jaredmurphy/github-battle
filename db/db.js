@@ -140,10 +140,15 @@ var create_battle = function(req, res, next){
   var winner_image = req.body.winner_image;
   var loser_image = req.body.loser_image;
 
+  var incrementWins = function(){
+    db.none("UPDATE githubUsers SET wins = wins + 1 WHERE github_id =$1;", [winner_id]);
+  } // ends increment wins
+
   db.none(
     "INSERT INTO battles (winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
       [winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url]
     ).then(function() {
+      incrementWins();
       next();
     }).catch(function(error){
       console.log(error)
@@ -181,5 +186,14 @@ var last_battle = function(req, res, next){
     });
 } // ends show battle
 
+var leaderboard = function(req, res, next){
+  db.any("SELECT * FROM githubUsers")
+  .then(function(users){
+    console.log(users)
+    res.users = users;
+    next();
+  })
+}
 
-module.exports = { login, logout, create_user, show_battle, create_battle, create_or_update_githubUser, last_battle };
+
+module.exports = { login, logout, create_user, show_battle, create_battle, create_or_update_githubUser, last_battle, leaderboard };

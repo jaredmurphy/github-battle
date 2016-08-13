@@ -21,7 +21,7 @@
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li><a href="/battle">Battle</a></li>
-      <li><a href="/leaderboard">Leaderboard</a></li>
+      <li><a href="/leaderboard" class="active">Leaderboard</a></li>
       <li><a href="/about">About</a></li>
     </ul>
   </div>
@@ -29,17 +29,13 @@
 
 
 <div class="container">
-  <h1 class="center-align"> Open Source Champion </h1>
-  <div class="carousel">
-    <a class="carousel-item" href="#one!"><img src="https://raw.githubusercontent.com/hashdog/node-identicon-github/master/examples/images/github.png"></a>
-    <a class="carousel-item" href="#two!"><img src="https://github.com/identicons/japh.png"></a>
-    <a class="carousel-item" href="#three!"><img src="https://raw.githubusercontent.com/1l0/identicon/master/example/identicons/default.png"></a>
-    <a class="carousel-item" href="#four!"><img src="https://github.com/identicons/jasonlong.png"></a>
-    <a class="carousel-item" href="#five!"><img src="https://github.com/identicons/jcazevedo.png"></a>
-    <a class="carousel-item" href="#three!"><img src="https://github.com/identicons/streetlife.png"></a>
-    <a class="carousel-item" href="#four!"><img src="https://github.com/identicons/10101010101010101ffffffffa000000.png"></a>
-    <a class="carousel-item" href="#five!"><img src="https://help.github.com/assets/images/help/profile/identicon.png"></a>
-  </div>
+  <h3 class="center-align"> Leaderboard </h3>
+
+  {{ #users }}
+
+    {{ login }} - {{ wins }}
+  {{ /users }}
+
 </div>
 </body>
 </html>

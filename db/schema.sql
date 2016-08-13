@@ -31,7 +31,8 @@ CREATE TABLE githubUsers (
   blog VARCHAR,
   company VARCHAR,
   created VARCHAR NOT NULL,
-  email VARCHAR
+  email VARCHAR,
+  wins INTEGER DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE battles (

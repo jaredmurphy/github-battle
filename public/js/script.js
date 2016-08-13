@@ -237,8 +237,8 @@ $(document).ready(function() {
     $('#battle_button').click(function() {
 
       var scores = findWinner(players)
-      //createOrUpdateGithubUsers(players.player_one);
-      //createOrUpdateGithubUsers(players.player_two);
+      createOrUpdateGithubUsers(players.player_one);
+      createOrUpdateGithubUsers(players.player_two);
       createBattle(winnerLoserData(scores))
     })
 

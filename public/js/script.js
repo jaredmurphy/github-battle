@@ -218,11 +218,14 @@ $(document).ready(function() {
 
     $('#battle_button').click(function() {
       //console.log(players);
-      // createOrUpdateGithubUsers(players.player_one);
-      // createOrUpdateGithubUsers(players.player_two);
+
       var scores = findWinner(players)
       //console.log(winnerLoserData(scores));
-      createBattle(winnerLoserData(scores))
+      createOrUpdateGithubUsers(players.player_one)
+      // .then(function() {
+      //   createOrUpdateGithubUsers(players.player_two);
+      // })
+      //createBattle(winnerLoserData(scores))
       //scores.status === "tie" ? handleTie(scores) : handleWin(scores);
     })
 

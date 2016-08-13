@@ -74,18 +74,45 @@ var create_or_update_githubUser = function(req, res, next){
     created = req.body.created,
     email = req.body.email;
 
+    var updateUser = function() {
+      db.one("UPDATE githubUsers SET github_id=$1, login=$2, image=$3, followers=$3, following=$4, public_repos=$5, public_gists=$6, github_url=$7, location=$8, blog=$9, company=$10, created=$11, email=$12 WHERE github_id=$1;",
+        [github_id, login, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
+      .then(function(user){
+        console.log(user);
+      })
+    } // ends update user
 
-  db.none("UPDATE githubUsers SET login=$2, followers=$3, following=$4, public_repos=$5," +
-    " public_gists=$6, github_url=$7, location=$8, blog=$9, company=$10, created=$11," +
-    " email=$12 WHERE github_id=$1;",
-    [github_id, login, followers, following, public_repos, public_gists, github_url, location,
-    blog, company, created, email]
-  )
-  db.none("INSERT INTO githubUsers " +
-    "(github_id, login, followers, following, public_repos, public_gists, github_url," +
-    " location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12"),
-    [github_id, login, followers, following, public_repos, public_gists, github_url, location,
-    blog, company, created, email]
+    var createUser = function() {
+      console.log('createuser')
+      db.none("INSERT INTO githubUsers (github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8 $9, $10, $11, $12, $13);",
+        [github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
+      .then(function(user){
+        console.log(user);
+      }).catch(function(err){
+        console.log(err)
+      })
+    } // ends update user
+
+  db.one("SELECT * FROM githubUsers WHERE github_id=$1", [github_id])
+    .then(function(user){
+      console.log(user)
+      updateUser();
+      next();
+    }).catch(function(err){
+      //console.log(err)
+      //console.log(err.received)
+      if (err.received === 0){
+      //  console.log(true)
+        createUser();
+      }
+    });
+  // db.none("UPDATE githubUsers SET login=$2, followers=$3, following=$4, public_repos=$5, public_gists=$6, github_url=$7, location=$8, blog=$9, company=$10, created=$11, email=$12 WHERE github_id=$1;",
+  //   [github_id, login, followers, following, public_repos, public_gists, github_url, location,
+  //   blog, company, created, email]
+  // )
+  // db.none("INSERT INTO githubUsers (github_id, login, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12"),
+  //   [github_id, login, followers, following, public_repos, public_gists, github_url, location,
+  //   blog, company, created, email]
 } // ends update or create githubUser
 
 var create_battle = function(req, res, next){

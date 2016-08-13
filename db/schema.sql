@@ -46,7 +46,7 @@ winner_score INTEGER NOT NULL,
 loser_score INTEGER NOT NULL,
 winner_url VARCHAR NOT NULL,
 loser_url VARCHAR NOT NULL,
-my_date date not null default CURRENT_DATE
+my_date date not null default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE repos (

@@ -123,7 +123,7 @@ var create_or_update_githubUser = function(req, res, next){
 
 var create_battle = function(req, res, next){
   var winner_id = Number(req.body.winner_id);
-  var loser_id = parseInt(req.body.loser_id);
+  var loser_id = Number(req.body.loser_id);
 
   var winner_login = req.body.winner_login;
   var loser_login = req.body.loser_login;
@@ -143,8 +143,7 @@ var create_battle = function(req, res, next){
   db.none(
     "INSERT INTO battles (winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
       [winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url]
-    ).then(function(battle) {
-      console.log("battle", battle)
+    ).then(function() {
       next();
     }).catch(function(error){
       console.log(error)
@@ -167,5 +166,20 @@ var show_battle = function(req, res, next){
     });
 } // ends show battle
 
+var last_battle = function(req, res, next){
+  var winner_id = req.params.winner_id;
+  var loser_id = req.params.loser_id;
+  db.one("SELECT * FROM battles WHERE winner_id=$1 AND loser_id=$2 ORDER BY my_date DESC LIMIT 1;", [winner_id, loser_id])
+    .catch(function(error){
+      //console.log(error);
+      res.error  = 'Error. Battle could not be shown';
+      next();
+    }).then(function(battle){
+      res.battle = battle;
+      console.log(res.battle)
+      next();
+    });
+} // ends show battle
 
-module.exports = { login, logout, create_user, show_battle, create_battle, create_or_update_githubUser };
+
+module.exports = { login, logout, create_user, show_battle, create_battle, create_or_update_githubUser, last_battle };

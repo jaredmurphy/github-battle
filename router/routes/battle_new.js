@@ -4,11 +4,12 @@ const db = require('../../db/db');
 
 router.post('/', db.create_battle, function (req, res) {
   if(res.error){
-    req.flash('error', res.error);
+    res.send(res.error)
+    // req.flash('error', res.error);
   } else {
     console.log('should redirect right about now');
-    //res.send();
-    res.render('./battle/show');
+    console.log("battle", res.battle)
+    res.send("success");
   }
 });
 module.exports = router;

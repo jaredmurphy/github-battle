@@ -143,14 +143,31 @@ $(document).ready(function() {
       }
     }
 
+    var getLastBattle = function(battleData) {
+      console.log(battleData)
+      $.ajax({
+        url: "/battle/last/" + battleData.winner_id + "/" + battleData.loser_id,
+        type: "GET",
+        success: function(res){
+          console.log("res", res);
+          res = JSON.parse(res);
+          window.location.replace("/battle/" + res.id);
+        },
+        error: function(error){
+          console.log(error)
+        }
+      })
+    } // ends last battle
+
     var createBattle = function(battleData){
-      console.log('should be creating battle')
+    //  console.log('should be creating battle')
       $.ajax({
         url: "/battle/new",
         type: "POST",
         data: battleData,
         success: function(res){
           console.log("res", res);
+          getLastBattle(battleData);
         },
         error: function(error){
           console.log(error)
@@ -218,17 +235,11 @@ $(document).ready(function() {
     } // ends findWinner
 
     $('#battle_button').click(function() {
-      //console.log(players);
 
       var scores = findWinner(players)
-      //console.log(winnerLoserData(scores));
-      createOrUpdateGithubUsers(players.player_one);
-      createOrUpdateGithubUsers(players.player_two);
-      // .then(function() {
-      //   createOrUpdateGithubUsers(players.player_two);
-      // })
-      //createBattle(winnerLoserData(scores))
-      //scores.status === "tie" ? handleTie(scores) : handleWin(scores);
+      //createOrUpdateGithubUsers(players.player_one);
+      //createOrUpdateGithubUsers(players.player_two);
+      createBattle(winnerLoserData(scores))
     })
 
     var timer;

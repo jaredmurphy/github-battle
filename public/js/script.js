@@ -122,9 +122,39 @@ $(document).ready(function() {
       }) // ends ajax
     } // ends createOrUpdateGithubUsers
 
-    var createBattle = function(players) {
-      var player_one = players.player_one.data;
-      var player_two = players.player_two.data;
+    var winnerLoserData = function(scores){
+      var winner = scores.winner;
+      var loser = scores.loser;
+      console.log(winner);
+      console.log(loser)
+
+      return {
+        winner_id: winner.data.id,
+        loser_id: loser.data.id,
+        winner_score: winner.score,
+        loser_score: loser.score,
+        winner_login: winner.data.login,
+        loser_login: loser.data.login,
+        winner_image: winner.data.avatar_url,
+        loser_image: loser.data.avatar_url,
+        winner_url: winner.data.html_url,
+        loser_url: loser.data.html_url
+      }
+    }
+
+    var createBattle = function(battleData){
+      $.ajax({
+        url: "/battle/new",
+        type: "POST",
+        data: battleData,
+        success: function(res){
+          console.log(res);
+        },
+        error: function(error){
+          console.log(error)
+        }
+      })
+    }
 
       // var data = {
       //   winner_id: req.body.winner_id;
@@ -164,10 +194,10 @@ $(document).ready(function() {
       //   }
       //
       // }) // ends ajax
-    } // ends createOrUpdateGithubUsers
+     // ends createOrUpdateGithubUsers
 
     var findScore = function(player){
-      return player.followers + player.following + player.public_repos;
+      return player.followers + player.following + (player.public_repos * 50);
     } // ends findScore
 
     var findWinner = function(players){
@@ -190,9 +220,9 @@ $(document).ready(function() {
       // createOrUpdateGithubUsers(players.player_one);
       // createOrUpdateGithubUsers(players.player_two);
       var scores = findWinner(players)
-      console.log(scores)
-
-      //createBattle(players);
+      //console.log(winnerLoserData(scores));
+      createBattle(winnerLoserData(scores))
+      //scores.status === "tie" ? handleTie(scores) : handleWin(scores);
     })
 
     var timer;

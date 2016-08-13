@@ -37,9 +37,15 @@ CREATE TABLE githubUsers (
 CREATE TABLE battles (
 id SERIAL PRIMARY KEY,
 winner_id INTEGER NOT NULL,
-winner_score INTEGER NOT NULL,
 loser_id INTEGER NOT NULL,
+winner_login VARCHAR NOT NULL,
+loser_login VARCHAR NOT NULL,
+winner_image VARCHAR NOT NULL,
+loser_image VARCHAR NOT NULL,
+winner_score INTEGER NOT NULL,
 loser_score INTEGER NOT NULL,
+winner_url VARCHAR NOT NULL,
+loser_url VARCHAR NOT NULL,
 my_date date not null default CURRENT_DATE
 );
 

@@ -59,4 +59,61 @@ var create_user = function(req, res, next){
   });
 };
 
-module.exports = { login, logout, create_user };
+var create_or_update_githubUser = function(req, res, next){
+  var github_id = req.body.github_id,
+    login = req.body.login,
+    image = req.body.image,
+    followers = req.body.followers,
+    following = req.body.followers,
+    public_repos = req.body.public_repos,
+    public_gists = req.body.public_gists,
+    github_url = req.body.github_url,
+    location = req.body.location,
+    blog = req.body.blog,
+    company = req.body.company,
+    created = req.body.created,
+    email = req.body.email;
+
+
+  db.none("UPDATE githubUsers SET login=$2, followers=$3, following=$4, public_repos=$5," +
+    " public_gists=$6, github_url=$7, location=$8, blog=$9, company=$10, created=$11," +
+    " email=$12 WHERE github_id=$1;",
+    [github_id, login, followers, following, public_repos, public_gists, github_url, location,
+    blog, company, created, email]
+  )
+  db.none("INSERT INTO githubUsers " +
+    "(github_id, login, followers, following, public_repos, public_gists, github_url," +
+    " location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12"),
+    [github_id, login, followers, following, public_repos, public_gists, github_url, location,
+    blog, company, created, email]
+} // ends update or create githubUser
+
+var create_battle = function(req, res, next){
+  var winner_id = req.body.winner_id;
+  var loser_id = req.body.loser_id;
+
+  var winner_login = req.body.winner_login;
+  var loser_login = req.body.loser_login;
+
+  var winner_image = req.body.winner_image;
+  var loser_image = req.body.loser_image;
+
+  var winner_score = req.body.winner_score;
+  var loser_score = req.body.loser_score;
+
+  var winner_url = req.body.winner_url;
+  var loser_url = req.body.loser_url;
+
+  db.none(
+    "INSERT INTO battles (winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url) VALUES ($1, $2, $4, $5, $6, $7, $8, $9, $10)",
+      [winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url]
+    ).catch(function(){
+      res.error = 'Error. Battle could not be created.';
+      next();
+    }).then(function(battle){
+      console.log(battle)
+      next();
+    });
+}; // ends create_battle
+
+module.exports = { login, logout, create_user, create_battle, create_or_update_githubUser };

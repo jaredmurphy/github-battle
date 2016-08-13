@@ -19,8 +19,6 @@ CREATE TABLE users (
 
 CREATE TABLE githubUsers (
   id SERIAL PRIMARY KEY,
-  wins INTEGER NOT NULL DEFAULT 0,
-  currentScore INTEGER NOT NULL DEFAULT 0,
   github_id INTEGER NOT NULL UNIQUE,
   login VARCHAR NOT NULL,
   image VARCHAR NOT NULL,
@@ -38,9 +36,9 @@ CREATE TABLE githubUsers (
 
 CREATE TABLE battles (
 id SERIAL PRIMARY KEY,
-winner_id INTEGER NOT NULL REFERENCES githubUsers(id) ON UPDATE CASCADE ,
+winner_id INTEGER NOT NULL,
 winner_score INTEGER NOT NULL,
-loser_id INTEGER NOT NULL REFERENCES githubUsers(id) ON UPDATE CASCADE,
+loser_id INTEGER NOT NULL,
 loser_score INTEGER NOT NULL,
 my_date date not null default CURRENT_DATE
 );

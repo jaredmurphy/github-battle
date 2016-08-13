@@ -93,8 +93,106 @@ $(document).ready(function() {
       }
     });
 
+    var createOrUpdateGithubUsers = function(player) {
+      var data = {
+        github_id: player.data.id,
+        login: player.data.login,
+        followers: player.data.followers,
+        following: player.data.following,
+        public_repos: player.data.public_repos,
+        public_gists: player.data.public_gists,
+        github_url: player.data.url,
+        location: player.data.location,
+        blog: player.data.blog,
+        company: player.data.company,
+        created: player.data.created_at,
+        email: player.data.email
+      }
+      $.ajax({
+        url: "/create_or_update_githubUsers",
+        type: "POST",
+        data: data,
+        success: function(res){
+          console.log(res);
+        },
+        error: function(error){
+          console.log(error)
+        }
+
+      }) // ends ajax
+    } // ends createOrUpdateGithubUsers
+
+    var createBattle = function(players) {
+      var player_one = players.player_one.data;
+      var player_two = players.player_two.data;
+
+      // var data = {
+      //   winner_id: req.body.winner_id;
+      //   loser_id: req.body.loser_id;
+      //
+      //   winner_login: req.body.winner_login;
+      //   loser_login: req.body.loser_login;
+      //
+      //   winner_image: req.body.winner_image;
+      //   loser_image: req.body.loser_image;
+      //
+      //   winner_score: req.body.winner_score;
+      //   loser_score: req.body.loser_score;
+      //
+      //   github_id: player.data.id,
+      //   login: player.data.login,
+      //   followers: player.data.followers,
+      //   following: player.data.following,
+      //   public_repos: player.data.public_repos,
+      //   public_gists: player.data.public_gists,
+      //   github_url: player.data.url,
+      //   location: player.data.location,
+      //   blog: player.data.blog,
+      //   company: player.data.company,
+      //   created: player.data.created_at,
+      //   email: player.data.email
+      // }
+      // $.ajax({
+      //   url: "/create_or_update_githubUsers",
+      //   type: "POST",
+      //   data: data,
+      //   success: function(res){
+      //     console.log(res);
+      //   },
+      //   error: function(error){
+      //     console.log(error)
+      //   }
+      //
+      // }) // ends ajax
+    } // ends createOrUpdateGithubUsers
+
+    var findScore = function(player){
+      return player.followers + player.following + player.public_repos;
+    } // ends findScore
+
+    var findWinner = function(players){
+      var player_one_score = findScore(players.player_one.data);
+      var player_two_score = findScore(players.player_two.data);
+      players.player_one.score = player_one_score;
+      players.player_two.score = player_two_score;
+
+      if (player_one_score > player_two_score) {
+        return { status: "winner", winner: players.player_one, loser: players.player_two };
+      } else if (player_one_score < player_two_score){
+        return { status: "winner", winner: players.player_two, loser: players.player_one };
+      } else {
+        return { status: "tie" }
+      }
+    } // ends findWinner
+
     $('#battle_button').click(function() {
       console.log(players);
+      // createOrUpdateGithubUsers(players.player_one);
+      // createOrUpdateGithubUsers(players.player_two);
+      var scores = findWinner(players)
+      console.log(scores)
+
+      //createBattle(players);
     })
 
     var timer;

@@ -89,7 +89,6 @@ var create_or_update_githubUser = function(req, res, next){
 } // ends update or create githubUser
 
 var create_battle = function(req, res, next){
-  //console.log(req.body)
   var winner_id = Number(req.body.winner_id);
   var loser_id = parseInt(req.body.loser_id);
 
@@ -129,11 +128,9 @@ var show_battle = function(req, res, next){
       res.error  = 'Error. Battle could not be shown';
       next();
     }).then(function(battle){
-      //console.log(battle);
       res.battle = battle;
-      console.log(res.battle)
+      //console.log(res.battle)
       next();
-      //res.render('./battle/show');
     });
 } // ends show battle
 

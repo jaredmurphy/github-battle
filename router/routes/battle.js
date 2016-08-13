@@ -7,11 +7,11 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:id', db.show_battle, function (req, res) {
-  console.log(res.battle.id)
+  //console.log(res.battle.id)
   if(res.error){
     req.flash('error', res.error);
   } else {
-    console.log('succcess')
+    //console.log('succcess')
     res.render('./battle/show',  res.battle );
   }
 });

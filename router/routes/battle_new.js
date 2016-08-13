@@ -6,7 +6,9 @@ router.post('/', db.create_battle, function (req, res) {
   if(res.error){
     req.flash('error', res.error);
   } else {
-    res.send('success');
+    console.log('should redirect right about now');
+    //res.send();
+    res.render('./battle/show');
   }
 });
 module.exports = router;

@@ -125,8 +125,8 @@ $(document).ready(function() {
     var winnerLoserData = function(scores){
       var winner = scores.winner;
       var loser = scores.loser;
-      console.log(winner);
-      console.log(loser)
+      //console.log(winner);
+      //console.log(loser)
 
       return {
         winner_id: winner.data.id,
@@ -143,12 +143,13 @@ $(document).ready(function() {
     }
 
     var createBattle = function(battleData){
+      console.log('should be creating battle')
       $.ajax({
         url: "/battle/new",
         type: "POST",
         data: battleData,
         success: function(res){
-          console.log(res);
+          console.log("res", res);
         },
         error: function(error){
           console.log(error)
@@ -216,7 +217,7 @@ $(document).ready(function() {
     } // ends findWinner
 
     $('#battle_button').click(function() {
-      console.log(players);
+      //console.log(players);
       // createOrUpdateGithubUsers(players.player_one);
       // createOrUpdateGithubUsers(players.player_two);
       var scores = findWinner(players)

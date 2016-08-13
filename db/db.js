@@ -89,7 +89,7 @@ var create_or_update_githubUser = function(req, res, next){
 } // ends update or create githubUser
 
 var create_battle = function(req, res, next){
-  console.log(req.body)
+  //console.log(req.body)
   var winner_id = Number(req.body.winner_id);
   var loser_id = parseInt(req.body.loser_id);
 
@@ -111,25 +111,29 @@ var create_battle = function(req, res, next){
   db.none(
     "INSERT INTO battles (winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
       [winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url]
-    ).catch(function(error){
+    ).then(function(battle) {
+      console.log("battle", battle)
+      next();
+    }).catch(function(error){
       console.log(error)
       res.error = 'Error. Battle could not be created.';
       next();
-    }).then(function(battle){
-      console.log(battle)
-      next();
     });
+
 }; // ends create_battle
 
 var show_battle = function(req, res, next){
-  //console.log(req)
-  db.one("SELECT * FROM battles WHERE id=$1", [req.body.id])
+  db.one("SELECT * FROM battles WHERE id=$1", [req.params.id])
     .catch(function(error){
       console.log(error);
       res.error  = 'Error. Battle could not be shown';
       next();
     }).then(function(battle){
-      console.log(battle);
+      //console.log(battle);
+      res.battle = battle;
+      console.log(res.battle)
+      next();
+      //res.render('./battle/show');
     });
 } // ends show battle
 

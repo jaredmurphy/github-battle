@@ -27,3 +27,11 @@ img.select_user {
   margin: 0 auto;
   text-align: center;
 }
+
+.disabled_input {
+  pointer-events: none;
+}
+
+#battle_button {
+  display: none;
+}

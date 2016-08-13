@@ -20,6 +20,11 @@ $(document).ready(function() {
     // github username api functions //
     ///////////////////////////////////
 
+    // battle funcction
+    var battle = function() {
+      console.log(players);
+    }
+
     // player select
     var players = {
       player_one: {
@@ -71,20 +76,26 @@ $(document).ready(function() {
       if (!$(this).hasClass('disabled')) {
         if ($(this).hasClass('player_one_button')){
           var player = 'player_one';
+          $('#player_two_input').removeClass('disabled_input');
         } else if ($(this).hasClass('player_two_button')){
           var player = 'player_two';
         }
         players[player].selected = true;
         $('.' + player + '_img').trigger('mouseleave');
-        $('.' + player + '_button').text(players.player_one.username + " selected!");
+        $('.' + player + '_button').text(players[player].data.login);
         $('.' + player + '_input').remove();
+        $('#' + player + '_card p').remove();
       }
       if (players.player_one.selected === true && players.player_two.selected === true){
         $('#players p').remove();
-        $('#players').append('<button class="btn waves-effect waves-light red darken-1 center"> BATTLE! </button>');
-        console.log(players);
+        $('#battle_button').fadeIn();
+        $('#battle_button').css('display', 'block');
       }
     });
+
+    $('#battle_button').click(function() {
+      console.log(players);
+    })
 
     var timer;
     $('.player_input').on('keyup', function(e) {

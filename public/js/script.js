@@ -97,6 +97,7 @@ $(document).ready(function() {
       var data = {
         github_id: player.data.id,
         login: player.data.login,
+        image: player.data.avatar_url,
         followers: player.data.followers,
         following: player.data.following,
         public_repos: player.data.public_repos,
@@ -221,7 +222,8 @@ $(document).ready(function() {
 
       var scores = findWinner(players)
       //console.log(winnerLoserData(scores));
-      createOrUpdateGithubUsers(players.player_one)
+      createOrUpdateGithubUsers(players.player_one);
+      createOrUpdateGithubUsers(players.player_two);
       // .then(function() {
       //   createOrUpdateGithubUsers(players.player_two);
       // })

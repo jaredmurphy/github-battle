@@ -60,6 +60,7 @@ var create_user = function(req, res, next){
 };
 
 var create_or_update_githubUser = function(req, res, next){
+  console.log(req.body)
   var github_id = req.body.github_id,
     login = req.body.login,
     image = req.body.image,
@@ -75,8 +76,9 @@ var create_or_update_githubUser = function(req, res, next){
     email = req.body.email;
 
     var updateUser = function() {
-      db.one("UPDATE githubUsers SET github_id=$1, login=$2, image=$3, followers=$3, following=$4, public_repos=$5, public_gists=$6, github_url=$7, location=$8, blog=$9, company=$10, created=$11, email=$12 WHERE github_id=$1;",
-        [github_id, login, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
+      console.log('update user')
+      db.one("UPDATE githubUsers SET github_id=$1, login=$2, image=$3, followers=$4, following=$5, public_repos=$6, public_gists=$7, github_url=$8, location=$9, blog=$10, company=$11, created=$12, email=$13 WHERE github_id=$1;",
+        [github_id, login, , image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
       .then(function(user){
         console.log(user);
       })
@@ -84,12 +86,16 @@ var create_or_update_githubUser = function(req, res, next){
 
     var createUser = function() {
       console.log('createuser')
-      db.none("INSERT INTO githubUsers (github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8 $9, $10, $11, $12, $13);",
+      //console.log(image)
+
+      db.none("INSERT INTO githubUsers (github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);",
         [github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
       .then(function(user){
-        console.log(user);
+        console.log("user", user);
+        next();
       }).catch(function(err){
         console.log(err)
+        next();
       })
     } // ends update user
 

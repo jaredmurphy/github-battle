@@ -35,3 +35,10 @@ img.select_user {
 #battle_button {
   display: none;
 }
+
+.leaderboard_image {
+  max-height: 80px;
+}
+.leaderboard_cards div {
+  height: 170px;
+}

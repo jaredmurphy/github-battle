@@ -187,13 +187,27 @@ var last_battle = function(req, res, next){
 } // ends show battle
 
 var leaderboard = function(req, res, next){
-  db.any("SELECT * FROM githubUsers")
+  db.any("SELECT * FROM githubUsers ORDER BY wins DESC Limit 50;")
   .then(function(users){
     console.log(users)
     res.users = users;
     next();
   })
+  .catch(function(error){
+    res.error = 'Error. could not find users';
+    next();
+  });
+} // ends leaderboard function
+
+var home = function(req, res, next){
+  db.any("SELECT * FROM githubUsers;")
+  .then(function(images){
+    res.user_images = images;
+    next();
+  })
+  .catch(function(error){
+    res.error = 'Err.could not find user images'
+  });
 }
 
-
-module.exports = { login, logout, create_user, show_battle, create_battle, create_or_update_githubUser, last_battle, leaderboard };
+module.exports = { home, login, logout, create_user, show_battle, create_battle, create_or_update_githubUser, last_battle, leaderboard };

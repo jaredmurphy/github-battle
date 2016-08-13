@@ -1,4 +1,9 @@
+
+DROP TABLE IF EXISTS battles;
+DROP TABLE IF EXISTS repos;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS githubUsers;
 
 CREATE TABLE admin (
   id SERIAL PRIMARY KEY,
@@ -12,4 +17,44 @@ CREATE TABLE users (
   password_digest VARCHAR(255)
 );
 
+CREATE TABLE githubUsers (
+  id SERIAL PRIMARY KEY,
+  wins INTEGER NOT NULL DEFAULT 0,
+  currentScore INTEGER NOT NULL DEFAULT 0,
+  github_id INTEGER NOT NULL UNIQUE,
+  login VARCHAR NOT NULL,
+  image VARCHAR NOT NULL,
+  followers INTEGER NOT NULL,
+  following INTEGER NOT NULL,
+  public_repos INTEGER NOT NULL,
+  public_gists INTEGER NOT NULL,
+  github_url VARCHAR NOT NULL,
+  location VARCHAR,
+  blog VARCHAR,
+  company VARCHAR,
+  created VARCHAR NOT NULL,
+  email VARCHAR
+);
 
+CREATE TABLE battles (
+id SERIAL PRIMARY KEY,
+winner_id INTEGER NOT NULL REFERENCES githubUsers(id) ON UPDATE CASCADE ,
+winner_score INTEGER NOT NULL,
+loser_id INTEGER NOT NULL REFERENCES githubUsers(id) ON UPDATE CASCADE,
+loser_score INTEGER NOT NULL,
+my_date date not null default CURRENT_DATE
+);
+
+CREATE TABLE repos (
+  id SERIAL PRIMARY KEY,
+  github_id INTEGER NOT NULL UNIQUE,
+  user_id INTEGER NOT NULL REFERENCES githubUsers(id) ON UPDATE CASCADE ,
+  githubUser_id INTEGER NOT NULL REFERENCES githubUsers(github_id) ON UPDATE CASCADE,
+  language VARCHAR NOT NULL,
+  has_downloads BOOLEAN NOT NULL,
+  stargazers_count INTEGER NOT NULL,
+  watchers_count INTEGER NOT NULL,
+  forks_count INTEGER NOT NULL,
+  forks INTEGER NOT NULL,
+  watchers INTEGER NOT NULL
+);

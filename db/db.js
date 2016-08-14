@@ -194,7 +194,7 @@ var leaderboard = function(req, res, next){
           db.any("SELECT DISTINCT loser_id FROM battles;")
           .then(function(losers){
             console.log("LOSERS", losers)
-              res.battles = losers;
+              res.losers = losers;
               next();
             });
         });

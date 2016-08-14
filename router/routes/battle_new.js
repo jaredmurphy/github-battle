@@ -7,9 +7,7 @@ router.post('/', db.create_battle, function (req, res) {
     res.send(res.error)
     // req.flash('error', res.error);
   } else {
-    console.log('should redirect right about now');
-    console.log("battle", res.battle_id)
-    var battle = { id: res.battle_id };
+    var battle = { id: res.battle_id.id };
     res.send(battle);
   }
 });

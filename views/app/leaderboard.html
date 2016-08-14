@@ -30,26 +30,66 @@
 
 <div class="container">
   <h3 class="center-align"> Leaderboard </h3>
-
-  {{ #users }}
   <div class="row">
-    <div class="col s12 m12">
-      <div class="card blue-grey col12 leaderboard_cards">
-        <div class="card-action white-text col s6">
-          <span class="card-title">{{ login }}</span>
-          <br />
-          <img src="{{ image }}" class="leaderboard_image"/>
+   <div class="col s12">
+     <ul class="tabs">
+       <li class="tab col s3"><a class="active" href="#most_wins">Most Wins</a></li>
+       <li class="tab col s3"><a href="#high_score">High Score</a></li>
+       <li class="tab col s3"><a href="#most_battles">Most Battles</a></li>
+     </ul>
+   </div>
+
+
+    <div id="most_wins" class="col s12 about_card">
+      {{ #wins }}
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card blue-grey col12 leaderboard_cards">
+              <div class="card-action white-text col s6">
+                <span class="card-title">{{ login }}</span>
+                <br />
+                <img src="{{ image }}" class="leaderboard_image"/>
+              </div>
+              <div class="card-action white-text col s6">
+                <p class="white-text">{{ wins }} Wins</p>
+                <p class="white-text">{{ location }}</p>
+                <a href="{{ github_url }}">Github</a>
+                <a href="{{ blog }}">Blog</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-action white-text col s6">
-          <p class="white-text">{{ wins }} Wins</p>
-          <p class="white-text">{{ location }}</p>
-          <a href="{{ github_url }}">Github</a>
-          <a href="{{ blog }}">Blog</a>
-        </div?
-      </div>
+      {{ /wins }}
     </div>
-  </div>
-  {{ /users }}
+
+    <div id="high_score" class="col s12 about_card">
+      {{ #scores }}
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card blue-grey col12 leaderboard_cards">
+              <div class="card-action white-text col s6">
+                <span class="card-title">{{ winner_login }}</span>
+                <br />
+                <img src="{{ image }}" class="leaderboard_image"/>
+              </div>
+              <div class="card-action white-text col s6">
+                <p class="white-text">High Score: {{ winner_score }}</p>
+                <p class="white-text">{{ location }}</p>
+                <a href="{{ github_url }}">Github</a>
+                <a href="{{ blog }}">Blog</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{ /scores }}
+    </div>
+
+    <div id="most_battles" class="col s12 about_card">
+      <h3> This section is under construction! </h3>
+    </div>
+
+  </div>   <!-- ends row -->
+
 
 </div>
 </body>

@@ -133,10 +133,9 @@ var create_battle = function(req, res, next){
   db.one(
     "INSERT INTO battles (winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id",
       [winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url]
-    ).then(function(battle) {
-      console.log(battle)
-      res.battle_id = battle.id
+    ).then(function(id) {
       incrementWins();
+      res.battle_id = id;
       next();
     }).catch(function(error){
       console.log(error)
@@ -147,12 +146,11 @@ var create_battle = function(req, res, next){
 }; // ends create_battle
 
 var get_user_by_login = function(req, res, next){
-  db.one("SELECT * FROM githubUsers WHERE login=$1", [req.params.login])
+  db.one("SELECT * FROM users WHERE login=$1", [req.params.login])
     .catch(function(error){
-      res.error  = 'ERROR';
+      res.error  = 'Error. User could not be shown';
       next();
     }).then(function(user){
-      console.log(user)
       res.user = user;
       next();
     });
@@ -183,10 +181,24 @@ var last_battle = function(req, res, next){
 } // ends show battle
 
 var leaderboard = function(req, res, next){
-  db.any("SELECT * FROM githubUsers WHERE wins > 0 ORDER BY wins DESC Limit 50;")
-  .then(function(users){
-    res.users = users;
-    next();
+  db.any("SELECT * FROM githubUsers WHERE wins > 0 ORDER BY wins DESC Limit 10;")
+  .then(function(wins){
+    res.wins = wins;
+    db.any("SELECT DISTINCT winner_score, winner_login, image, location, github_url, winner_score, wins FROM githubUsers JOIN battles ON battles.winner_id = githubUsers.github_id ORDER BY winner_score DESC LIMIT 10;")
+    .then(function(scores){
+      res.scores = scores;
+      db.any("SELECT DISTINCT winner_id FROM battles;")
+      .then(function(winners){
+        console.log("WINNERS", winners)
+          res.winners = winners;
+          db.any("SELECT DISTINCT loser_id FROM battles;")
+          .then(function(losers){
+            console.log("LOSERS", losers)
+              res.battles = losers;
+              next();
+            });
+        });
+    });
   })
   .catch(function(error){
     res.error = 'Error. could not find users';
@@ -205,7 +217,4 @@ var home = function(req, res, next){
   });
 }
 
-var get_user_by_id = function() {
-
-}
-module.exports = { get_user_by_login, get_user_by_id, home, login, logout, create_user, show_battle, create_battle, create_or_update_githubUser, last_battle, leaderboard };
+module.exports = { get_user_by_login, home, login, logout, create_user, show_battle, create_battle, create_or_update_githubUser, last_battle, leaderboard };

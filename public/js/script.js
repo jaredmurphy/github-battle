@@ -136,22 +136,6 @@ $(document).ready(function() {
       }
     }
 
-    // finds the battle that just occured
-    var getLastBattle = function(battleData) {
-      $.ajax({
-        url: "/battle/last/" + battleData.winner_id + "/" + battleData.loser_id,
-        type: "GET",
-        success: function(res){
-          console.log("res", res);
-          res = JSON.parse(res);
-          window.location.replace("/battle/" + res.id);
-        },
-        error: function(error){
-          console.log(error)
-        }
-      })
-    } // ends last battle
-
     //
     var createBattle = function(battleData){
       $.ajax({

@@ -4,13 +4,18 @@ const db = require('../../db/db');
 
 router.get('/', db.leaderboard, function (req, res) {
   // console.log("req", req)
-  console.log('users', res.users)
   if(res.error){
     req.flash('error', res.error);
   } else {
+
     var data = {
-      users: res.users
+      wins: res.wins,
+      scores: res.scores,
+      winners: res.winners,
+      losers: res.losers
     }
+
+    console.log("data", data)
     res.render('./app/leaderboard', data);
   }
 });

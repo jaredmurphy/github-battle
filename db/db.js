@@ -187,7 +187,7 @@ var last_battle = function(req, res, next){
 } // ends show battle
 
 var leaderboard = function(req, res, next){
-  db.any("SELECT * FROM githubUsers ORDER BY wins DESC Limit 50;")
+  db.any("SELECT * FROM githubUsers WHERE wins > 0 ORDER BY wins DESC Limit 50;")
   .then(function(users){
     console.log(users)
     res.users = users;
@@ -200,7 +200,7 @@ var leaderboard = function(req, res, next){
 } // ends leaderboard function
 
 var home = function(req, res, next){
-  db.any("SELECT * FROM githubUsers;")
+  db.any("SELECT * FROM githubUsers WHERE wins > 0;")
   .then(function(images){
     res.user_images = images;
     next();

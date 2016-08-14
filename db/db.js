@@ -130,10 +130,12 @@ var create_battle = function(req, res, next){
     db.none("UPDATE githubUsers SET wins = wins + 1 WHERE github_id =$1;", [winner_id]);
   } // ends increment wins
 
-  db.none(
-    "INSERT INTO battles (winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
+  db.one(
+    "INSERT INTO battles (winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id",
       [winner_id, loser_id, winner_login, loser_login, winner_image, loser_image, winner_score, loser_score, winner_url, loser_url]
-    ).then(function() {
+    ).then(function(battle) {
+      console.log(battle)
+      res.battle_id = battle.id
       incrementWins();
       next();
     }).catch(function(error){
@@ -147,7 +149,7 @@ var create_battle = function(req, res, next){
 var get_user_by_login = function(req, res, next){
   db.one("SELECT * FROM githubUsers WHERE login=$1", [req.params.login])
     .catch(function(error){
-      res.error  = 'Error. User could not be shown';
+      res.error  = 'ERROR';
       next();
     }).then(function(user){
       console.log(user)

@@ -32,7 +32,7 @@ $(document).ready(function() {
       }
     };
 
-    // find github user
+    // ajax call to github
     var getGithubUser = function() {
       if (!players.player_one.selected) {
         var player = 'player_one';
@@ -46,54 +46,26 @@ $(document).ready(function() {
       $('.' + player + '_img').remove();
       $('#warningMessage').remove();
 
-      // append user stuff once found
-      var appendUser = function(data){
-        console.log("DATA", data)
-        typeof(data) === "object" ? data = data : data = JSON.parse(data);
-        if (data.image){ data.avatar_url = data.image }
-        console.log(data.login, data.avatar_url);
-        $('#' + player + '_card').append('<img class="select_user ' + player + '_img tooltipped" data-position="right" data-delay="50" data-tooltip=' + data.login + ' src=' + data.avatar_url + '/>');
-        $('.tooltipped').tooltip({delay: 50});
-        $('.' + player + '_img').trigger('mouseenter');
-        $('.' + player + '_button').removeClass('disabled');
-        $('.' + player + '_button').addClass('waves-effect waves-light');
-        players[player].data = data;
-        console.log(players)
-      }
-
-      // find user on github if not in db
-      var findUserOnGithub = function() {
-        $.ajax({
-          type: "GET",
-          url: "https://api.github.com/users/" + user,
-          success: appendUser(data),
-          error: function(error){
-            $('.' + player + '_button').removeClass('waves-effect waves-light');
-            $('.' + player + '_button').addClass('disabled');
-            var warningMessage = $('<p id="warningMessage">Github Username ' + error.responseJSON.message + '</p>');
-            warningMessage.addClass('danger');
-            $('#' + player + '_card').append(warningMessage);
-          }
-        });
-      };
-
-      // find user in db by login name
       $.ajax({
         type: "GET",
-        url: "/getUsers/" + user,
-        success: function(data) {
-          console.log(data)
-          appendUser(data)
+        url: "https://api.github.com/users/" + user,
+        success: function(data){
+          $('#' + player + '_card').append('<img class="select_user ' + player + '_img tooltipped" data-position="right" data-delay="50" data-tooltip=' + data.login + ' src=' + data.avatar_url + '/>');
+          $('.tooltipped').tooltip({delay: 50});
+          $('.' + player + '_img').trigger('mouseenter');
+          $('.' + player + '_button').removeClass('disabled');
+          $('.' + player + '_button').addClass('waves-effect waves-light');
+          players[player].data = data;
         },
-        error: function(data){
-          findUserOnGithub
+        error: function(error){
+          $('.' + player + '_button').removeClass('waves-effect waves-light');
+          $('.' + player + '_button').addClass('disabled');
+          var warningMessage = $('<p id="warningMessage">Github Username ' + error.responseJSON.message + '</p>');
+          warningMessage.addClass('danger');
+          $('#' + player + '_card').append(warningMessage);
         }
       });
-
-
-
-    } // ends getGithubUser
-
+    };
 
     // button selects player
     $('.player_button').click(function() {
@@ -125,20 +97,19 @@ $(document).ready(function() {
         following: player.data.following,
         public_repos: player.data.public_repos,
         public_gists: player.data.public_gists,
-        github_url: player.data.github_url,
+        github_url: player.data.url,
         location: player.data.location,
         blog: player.data.blog,
         company: player.data.company,
         created: player.data.created_at,
         email: player.data.email
       }
-      console.log("DDDDAAAAATA", data)
       $.ajax({
         url: "/create_or_update_githubUsers",
         type: "POST",
         data: data,
         success: function(res){
-          console.log("player upated", res);
+          console.log(res);
         },
         error: function(error){
           console.log(error)
@@ -160,13 +131,13 @@ $(document).ready(function() {
         loser_login: loser.data.login,
         winner_image: winner.data.avatar_url,
         loser_image: loser.data.avatar_url,
-        winner_url: winner.data.github_url,
-        loser_url: loser.data.github_url
+        winner_url: winner.data.html_url,
+        loser_url: loser.data.html_url
       }
     }
 
-    // redirects to battle
-    var goToBattle = function(battleData) {
+    // finds the battle that just occured
+    var getLastBattle = function(battleData) {
       $.ajax({
         url: "/battle/last/" + battleData.winner_id + "/" + battleData.loser_id,
         type: "GET",
@@ -183,14 +154,13 @@ $(document).ready(function() {
 
     //
     var createBattle = function(battleData){
-      console.log("battleData", battleData)
       $.ajax({
         url: "/battle/new",
         type: "POST",
         data: battleData,
         success: function(res){
-          console.log("battleCreated", res);
-          goToBattle(battleData);
+          //console.log("res", res);
+          window.location.replace("/battle/" + res.id);
         },
         error: function(error){
           console.log(error)
@@ -203,7 +173,6 @@ $(document).ready(function() {
     } // ends findScore
 
     var findWinner = function(players){
-      console.log("PLAYAS", players)
       var player_one_score = findScore(players.player_one.data);
       var player_two_score = findScore(players.player_two.data);
       players.player_one.score = player_one_score;
@@ -220,11 +189,9 @@ $(document).ready(function() {
 
     $('#battle_button').click(function() {
 
-      console.log(players)
       var scores = findWinner(players)
-
-      console.log(createOrUpdateGithubUsers(players.player_one));
-      console.log(createOrUpdateGithubUsers(players.player_two));
+      createOrUpdateGithubUsers(players.player_one);
+      createOrUpdateGithubUsers(players.player_two);
       createBattle(winnerLoserData(scores))
     })
 

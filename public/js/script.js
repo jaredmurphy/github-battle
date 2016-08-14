@@ -47,7 +47,8 @@ $(document).ready(function() {
 
       var user = $('#' + player + '_input').val();
       $('#' + player + '_input').val('');
-      $('img.select_' + player).remove();
+      $('.' + player + '_img').trigger('mouseleave');
+      $('.' + player + '_img').remove();
       $('#warningMessage').remove();
 
       $.ajax({
@@ -59,7 +60,7 @@ $(document).ready(function() {
           $('.' + player + '_img').trigger('mouseenter');
           $('.' + player + '_button').removeClass('disabled');
           $('.' + player + '_button').addClass('waves-effect waves-light');
-          $('.' + player + 'input').remove();
+          //$('.' + player + 'input').remove();
           players[player].data = data;
         },
         error: function(error){
@@ -80,11 +81,10 @@ $(document).ready(function() {
         } else if ($(this).hasClass('player_two_button')){
           var player = 'player_two';
         }
+        $("#" + player + '_input').addClass('disabled_input');
         players[player].selected = true;
         $('.' + player + '_img').trigger('mouseleave');
         $('.' + player + '_button').text(players[player].data.login);
-        $('.' + player + '_input').remove();
-        $('#' + player + '_card p').remove();
       }
       if (players.player_one.selected === true && players.player_two.selected === true){
         $('#players p').remove();
@@ -126,9 +126,6 @@ $(document).ready(function() {
     var winnerLoserData = function(scores){
       var winner = scores.winner;
       var loser = scores.loser;
-      //console.log(winner);
-      //console.log(loser)
-
       return {
         winner_id: winner.data.id,
         loser_id: loser.data.id,
@@ -160,7 +157,6 @@ $(document).ready(function() {
     } // ends last battle
 
     var createBattle = function(battleData){
-    //  console.log('should be creating battle')
       $.ajax({
         url: "/battle/new",
         type: "POST",
@@ -174,46 +170,6 @@ $(document).ready(function() {
         }
       })
     }
-
-      // var data = {
-      //   winner_id: req.body.winner_id;
-      //   loser_id: req.body.loser_id;
-      //
-      //   winner_login: req.body.winner_login;
-      //   loser_login: req.body.loser_login;
-      //
-      //   winner_image: req.body.winner_image;
-      //   loser_image: req.body.loser_image;
-      //
-      //   winner_score: req.body.winner_score;
-      //   loser_score: req.body.loser_score;
-      //
-      //   github_id: player.data.id,
-      //   login: player.data.login,
-      //   followers: player.data.followers,
-      //   following: player.data.following,
-      //   public_repos: player.data.public_repos,
-      //   public_gists: player.data.public_gists,
-      //   github_url: player.data.url,
-      //   location: player.data.location,
-      //   blog: player.data.blog,
-      //   company: player.data.company,
-      //   created: player.data.created_at,
-      //   email: player.data.email
-      // }
-      // $.ajax({
-      //   url: "/create_or_update_githubUsers",
-      //   type: "POST",
-      //   data: data,
-      //   success: function(res){
-      //     console.log(res);
-      //   },
-      //   error: function(error){
-      //     console.log(error)
-      //   }
-      //
-      // }) // ends ajax
-     // ends createOrUpdateGithubUsers
 
     var findScore = function(player){
       return player.followers + player.following + (player.public_repos * 50);

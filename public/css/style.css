@@ -15,7 +15,7 @@ h1 {
 }
 
 img.select_user {
-  max-width: 180px;
+  max-height: 120px;
 }
 
 #warningMessage {
@@ -41,4 +41,8 @@ img.select_user {
 }
 .leaderboard_cards div {
   height: 170px;
+}
+
+.player_card {
+  height: 300px;
 }

@@ -76,7 +76,6 @@ var create_or_update_githubUser = function(req, res, next){
     email = req.body.email;
 
     var updateUser = function() {
-      console.log('update user')
       db.one("UPDATE githubUsers SET github_id=$1, login=$2, image=$3, followers=$4, following=$5, public_repos=$6, public_gists=$7, github_url=$8, location=$9, blog=$10, company=$11, created=$12, email=$13 WHERE github_id=$1;",
         [github_id, login, , image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
       .then(function(user){
@@ -85,9 +84,6 @@ var create_or_update_githubUser = function(req, res, next){
     } // ends update user
 
     var createUser = function() {
-      console.log('createuser')
-      //console.log(image)
-
       db.none("INSERT INTO githubUsers (github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);",
         [github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
       .then(function(user){
@@ -101,24 +97,13 @@ var create_or_update_githubUser = function(req, res, next){
 
   db.one("SELECT * FROM githubUsers WHERE github_id=$1", [github_id])
     .then(function(user){
-      console.log(user)
       updateUser();
       next();
     }).catch(function(err){
-      //console.log(err)
-      //console.log(err.received)
       if (err.received === 0){
-      //  console.log(true)
         createUser();
       }
     });
-  // db.none("UPDATE githubUsers SET login=$2, followers=$3, following=$4, public_repos=$5, public_gists=$6, github_url=$7, location=$8, blog=$9, company=$10, created=$11, email=$12 WHERE github_id=$1;",
-  //   [github_id, login, followers, following, public_repos, public_gists, github_url, location,
-  //   blog, company, created, email]
-  // )
-  // db.none("INSERT INTO githubUsers (github_id, login, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12"),
-  //   [github_id, login, followers, following, public_repos, public_gists, github_url, location,
-  //   blog, company, created, email]
 } // ends update or create githubUser
 
 var create_battle = function(req, res, next){
@@ -161,12 +146,10 @@ var create_battle = function(req, res, next){
 var show_battle = function(req, res, next){
   db.one("SELECT * FROM battles WHERE id=$1", [req.params.id])
     .catch(function(error){
-      console.log(error);
       res.error  = 'Error. Battle could not be shown';
       next();
     }).then(function(battle){
       res.battle = battle;
-      //console.log(res.battle)
       next();
     });
 } // ends show battle
@@ -176,12 +159,10 @@ var last_battle = function(req, res, next){
   var loser_id = req.params.loser_id;
   db.one("SELECT * FROM battles WHERE winner_id=$1 AND loser_id=$2 ORDER BY my_date DESC LIMIT 1;", [winner_id, loser_id])
     .catch(function(error){
-      //console.log(error);
       res.error  = 'Error. Battle could not be shown';
       next();
     }).then(function(battle){
       res.battle = battle;
-      console.log(res.battle)
       next();
     });
 } // ends show battle
@@ -189,7 +170,6 @@ var last_battle = function(req, res, next){
 var leaderboard = function(req, res, next){
   db.any("SELECT * FROM githubUsers WHERE wins > 0 ORDER BY wins DESC Limit 50;")
   .then(function(users){
-    console.log(users)
     res.users = users;
     next();
   })

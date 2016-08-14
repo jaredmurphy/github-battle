@@ -1,28 +1,11 @@
-# Example Express Auth App
+# Open Source Champion
 
-### Setup
+### Another beautiful way for programmers to one up each other
 
-1. Install packages:
+In first release 1.0
 
-    ```
-    npm install
-    ```
+#### Enter in Github usernames to determine a winner_id
 
-1. Create a database and run the schema file. In PostgreSQL:
+#### Score is based on Github API data for each user
 
-    ```
-    createdb auth
-    psql -d auth -f db/schema.sql
-    ```
-
-1. Add your database credentials to `db/db.js` on line 2:
-
-    ```
-    const db = pgp('postgres://xxxxxxx@localhost:5432/auth');
-    ```
-
-1. Start the server:
-
-    ```
-    npm start
-    ```
+##### Currently includes battle mode and leaderboard

@@ -12,7 +12,7 @@ router.get('/', db.leaderboard, function (req, res) {
       wins: res.wins,
       scores: res.scores,
       winners: res.winners,
-      losers = res.losers
+      losers: res.losers
     }
 
     console.log("data", data)

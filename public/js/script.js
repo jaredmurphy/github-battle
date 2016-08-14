@@ -17,20 +17,60 @@ $(document).ready(function() {
     $('ul.tabs').tabs();
 
     ///////////////////////////////////
+    /////// player constructors ///////
+    ///////////////////////////////////
+    var createPlayer = function(){
+      this.data = {
+        github_id: null,
+        login: null,
+        image: null,
+        followers: null,
+        following: null,
+        public_repos: null,
+        public_gists: null,
+        github_url: null,
+        location: null,
+        blog: null,
+        company: null,
+        created: null,
+        email: null
+      },
+      this.selected = false
+     }
+
+     createPlayer.prototype.isSelected = function(){
+          this.selected = true
+     }
+
+     createPlayer.prototype.dataFromGithub = function(return_data){
+         this.data = return_data;
+         this.isFromGithub = true;
+     }
+
+     createPlayer.prototype.dataFromDb = function(return_data){
+         this.data = return_data;
+         this.isFromGithub = false;
+     }
+
+     var players = { player_one: new createPlayer(), player_two: new createPlayer() }
+
+    ///////////////////////////////////
     // github username api functions //
     ///////////////////////////////////
 
-    // player select
-    var players = {
-      player_one: {
-        selected: false,
-        data: ''
-      },
-      player_two: {
-        selected: false,
-        data: ''
-      }
-    };
+    // // player select
+    // var players = {
+    //   player_one: {
+    //     selected: false,
+    //     data: '',
+    //     dataFromDB: false
+    //   },
+    //   player_two: {
+    //     selected: false,
+    //     data: '',
+    //     dataFROMDB: false
+    //   }
+    // };
 
     // ajax call to github
     var getGithubUser = function() {

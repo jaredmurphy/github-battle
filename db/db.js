@@ -107,6 +107,7 @@ var create_or_update_githubUser = function(req, res, next){
 } // ends update or create githubUser
 
 var create_battle = function(req, res, next){
+  console.log(req.body)
   var winner_id = Number(req.body.winner_id);
   var loser_id = Number(req.body.loser_id);
 
@@ -142,6 +143,18 @@ var create_battle = function(req, res, next){
     });
 
 }; // ends create_battle
+
+var get_user_by_login = function(req, res, next){
+  db.one("SELECT * FROM githubUsers WHERE login=$1", [req.params.login])
+    .catch(function(error){
+      res.error  = 'Error. User could not be shown';
+      next();
+    }).then(function(user){
+      console.log(user)
+      res.user = user;
+      next();
+    });
+} // ends get user by login
 
 var show_battle = function(req, res, next){
   db.one("SELECT * FROM battles WHERE id=$1", [req.params.id])
@@ -190,4 +203,7 @@ var home = function(req, res, next){
   });
 }
 
-module.exports = { home, login, logout, create_user, show_battle, create_battle, create_or_update_githubUser, last_battle, leaderboard };
+var get_user_by_id = function() {
+
+}
+module.exports = { get_user_by_login, get_user_by_id, home, login, logout, create_user, show_battle, create_battle, create_or_update_githubUser, last_battle, leaderboard };

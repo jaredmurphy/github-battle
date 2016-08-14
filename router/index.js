@@ -5,4 +5,5 @@ module.exports = function(app){
   app.use('/battle', require('./routes/battle'));
   app.use('/battle/new', require('./routes/battle_new'));
   app.use('/create_or_update_githubUsers', require('./routes/githubUsers'));
+  app.use('/getPlayerData', require('./routes/getPlayerData'));
 };

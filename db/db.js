@@ -61,7 +61,6 @@ var create_user = function(req, res, next){
 };
 
 var create_or_update_githubUser = function(req, res, next){
-  console.log(req.body)
   var github_id = req.body.github_id,
     login = req.body.login,
     image = req.body.image,
@@ -78,9 +77,13 @@ var create_or_update_githubUser = function(req, res, next){
 
     var updateUser = function() {
       db.one("UPDATE githubUsers SET github_id=$1, login=$2, image=$3, followers=$4, following=$5, public_repos=$6, public_gists=$7, github_url=$8, location=$9, blog=$10, company=$11, created=$12, email=$13 WHERE github_id=$1;",
-        [github_id, login, , image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
+        [github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
       .then(function(user){
         console.log("updated", user);
+        next();
+      }).catch(function(err){
+        console.log("error", error)
+        next();
       })
     } // ends update user
 
@@ -147,7 +150,8 @@ var create_battle = function(req, res, next){
 }; // ends create_battle
 
 var get_user_by_login = function(req, res, next){
-  db.one("SELECT * FROM users WHERE login=$1", [req.params.login])
+  console.log(req.params.login)
+  db.one("SELECT * FROM githubUsers WHERE login=$1", [req.params.login])
     .catch(function(error){
       res.error  = 'Error. User could not be shown';
       next();

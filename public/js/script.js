@@ -88,7 +88,6 @@ $(document).ready(function() {
       players[player].data.company = data.company;
       players[player].data.email = data.email;
       players[player].data.created = data.created_at;
-      //debugger;
     } // ends saveDataToPlayer
 
     // changes dom on success of finding player
@@ -208,7 +207,6 @@ $(document).ready(function() {
     // queries database for users and either creates or updates them
     var createOrUpdateGithubUsers = function(player) {
       var data = player.data;
-      //debugger;
       $.ajax({
         url: "/create_or_update_githubUsers",
         type: "POST",
@@ -227,25 +225,27 @@ $(document).ready(function() {
       var winner = scores.winner;
       var loser = scores.loser;
 
-      if(!winner.data.avatar_url){ winner.data.avatar_url = winner.data.image }
-      if(!loser.data.avatar_url){ loser.data.avatar_url = loser.data.image }
-
+      // if(!winner.data.avatar_url){ winner.data.avatar_url = winner.data.image }
+      // if(!loser.data.avatar_url){ loser.data.avatar_url = loser.data.image }
+      debugger;
       return {
-        winner_id: winner.data.id,
-        loser_id: loser.data.id,
+        winner_id: winner.data.github_id,
+        loser_id: loser.data.github_id,
         winner_score: winner.score,
         loser_score: loser.score,
         winner_login: winner.data.login,
         loser_login: loser.data.login,
-        winner_image: winner.data.avatar_url,
-        loser_image: loser.data.avatar_url,
-        winner_url: winner.data.html_url,
-        loser_url: loser.data.html_url
+        winner_image: winner.data.image,
+        loser_image: loser.data.image,
+        winner_url: winner.data.github_url,
+        loser_url: loser.data.github_url
       }
+      debugger;
     }
 
     //
     var createBattle = function(battleData){
+      debugger;
       $.ajax({
         url: "/battle/new",
         type: "POST",
@@ -283,9 +283,9 @@ $(document).ready(function() {
       createOrUpdateGithubUsers(players.player_one);
       createOrUpdateGithubUsers(players.player_two);
       //debugger;
-      //var scores = findWinner(players)
-
-      //createBattle(winnerLoserData(scores))
+      var scores = findWinner(players)
+      debugger;
+      createBattle(winnerLoserData(scores))
     })
 
     var timer;

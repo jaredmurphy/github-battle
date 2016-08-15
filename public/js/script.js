@@ -51,25 +51,10 @@ $(document).ready(function() {
      }
 
      var players = { player_one: new createPlayer(), player_two: new createPlayer() }
-     //console.log('current player', players[players.current_player])
 
     ///////////////////////////////////
     // github username api functions //
     ///////////////////////////////////
-
-    // // player select
-    // var players = {
-    //   player_one: {
-    //     selected: false,
-    //     data: '',
-    //     dataFromDB: false
-    //   },
-    //   player_two: {
-    //     selected: false,
-    //     data: '',
-    //     dataFROMDB: false
-    //   }
-    // };
 
 
     // save github data to players object
@@ -120,7 +105,6 @@ $(document).ready(function() {
           players[player].dataFromGithub();
         },
         error: function(error){
-          //debugger;
           var error = "Github user not found";
           addErrorToDom(player, error);
         }
@@ -134,7 +118,6 @@ $(document).ready(function() {
     //     url: "https://api.github.com/users/" + login,
     //     success: function(data){
     //       console.log(data)
-    //       //debugger;
     //       addPlayerToDom(player, data);
     //       saveDataToPlayer(data, player);
     //       console.log(players)
@@ -198,7 +181,6 @@ $(document).ready(function() {
         $('.' + player + '_button').text(players[player].data.login);
       }
       if (players.player_one.selected === true && players.player_two.selected === true){
-        console.log(players)
         $('#battle_button').fadeIn('slow');
         $('#battle_button').css('display', 'block');
       }
@@ -212,10 +194,8 @@ $(document).ready(function() {
         type: "POST",
         data: data,
         success: function(res){
-          console.log("success", res);
         },
         error: function(error){
-          console.log("error", error)
         }
       }) // ends ajax
     } // ends createOrUpdateGithubUsers
@@ -227,7 +207,6 @@ $(document).ready(function() {
 
       // if(!winner.data.avatar_url){ winner.data.avatar_url = winner.data.image }
       // if(!loser.data.avatar_url){ loser.data.avatar_url = loser.data.image }
-      debugger;
       return {
         winner_id: winner.data.github_id,
         loser_id: loser.data.github_id,
@@ -240,22 +219,18 @@ $(document).ready(function() {
         winner_url: winner.data.github_url,
         loser_url: loser.data.github_url
       }
-      debugger;
     }
 
     //
     var createBattle = function(battleData){
-      debugger;
       $.ajax({
         url: "/battle/new",
         type: "POST",
         data: battleData,
         success: function(res){
-          //console.log("res", res);
           window.location.replace("/battle/" + res.id);
         },
         error: function(error){
-          console.log(error)
         }
       })
     }
@@ -282,9 +257,7 @@ $(document).ready(function() {
     $('#battle_button').click(function() {
       createOrUpdateGithubUsers(players.player_one);
       createOrUpdateGithubUsers(players.player_two);
-      //debugger;
       var scores = findWinner(players)
-      debugger;
       createBattle(winnerLoserData(scores))
     })
 

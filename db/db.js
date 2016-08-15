@@ -79,7 +79,7 @@ var create_or_update_githubUser = function(req, res, next){
       db.one("UPDATE githubUsers SET github_id=$1, login=$2, image=$3, followers=$4, following=$5, public_repos=$6, public_gists=$7, github_url=$8, location=$9, blog=$10, company=$11, created=$12, email=$13 WHERE github_id=$1;",
         [github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
       .then(function(user){
-        console.log("updated", user);
+        //console.log("updated", user);
         next();
       }).catch(function(err){
         console.log("error", error)
@@ -91,7 +91,7 @@ var create_or_update_githubUser = function(req, res, next){
       db.none("INSERT INTO githubUsers (github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);",
         [github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])
       .then(function(user){
-        console.log("created", user);
+        //console.log("created", user);
         next();
       }).catch(function(err){
         console.log(err)
@@ -111,7 +111,6 @@ var create_or_update_githubUser = function(req, res, next){
 } // ends update or create githubUser
 
 var create_battle = function(req, res, next){
-  console.log(req.body)
   var winner_id = Number(req.body.winner_id);
   var loser_id = Number(req.body.loser_id);
 
@@ -142,7 +141,6 @@ var create_battle = function(req, res, next){
       res.battle_id = id;
       next();
     }).catch(function(error){
-      console.log(error)
       res.error = 'Error. Battle could not be created.';
       next();
     });
@@ -150,7 +148,6 @@ var create_battle = function(req, res, next){
 }; // ends create_battle
 
 var get_user_by_login = function(req, res, next){
-  console.log(req.params.login)
   db.one("SELECT * FROM githubUsers WHERE login=$1", [req.params.login])
     .catch(function(error){
       res.error  = 'Error. User could not be shown';
@@ -194,11 +191,11 @@ var leaderboard = function(req, res, next){
       res.scores = scores;
       db.any("SELECT DISTINCT winner_id FROM battles;")
       .then(function(winners){
-        console.log("WINNERS", winners)
+        //console.log("WINNERS", winners)
           res.winners = winners;
           db.any("SELECT DISTINCT loser_id FROM battles;")
           .then(function(losers){
-            console.log("LOSERS", losers)
+            //console.log("LOSERS", losers)
               res.losers = losers;
               next();
             });

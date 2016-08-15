@@ -7,7 +7,6 @@ router.get('/:login', db.get_user_by_login, function (req, res) {
     req.flash('error', res.error);
     res.send(res.error)
   } else {
-    console.log("get/login", res.user)
     res.send(res.user);
   }
 });

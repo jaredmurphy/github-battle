@@ -10,7 +10,6 @@ router.get('/', db.home, function (req, res) {
     var data = {
       images: res.user_images
     }
-    console.log(data);
     res.render('./app/home',  data);
   }
 });

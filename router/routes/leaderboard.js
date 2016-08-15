@@ -15,7 +15,6 @@ router.get('/', db.leaderboard, function (req, res) {
       losers: res.losers
     }
 
-    console.log("data", data)
     res.render('./app/leaderboard', data);
   }
 });

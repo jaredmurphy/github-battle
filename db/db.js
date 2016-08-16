@@ -75,6 +75,10 @@ var create_or_update_githubUser = function(req, res, next){
     created = req.body.created,
     email = req.body.email;
 
+    if (!blog.startsWith("https://") || blog.startsWith("http://") ) {
+      blog = "http://" + blog;
+    }
+
     var updateUser = function() {
       db.one("UPDATE githubUsers SET github_id=$1, login=$2, image=$3, followers=$4, following=$5, public_repos=$6, public_gists=$7, github_url=$8, location=$9, blog=$10, company=$11, created=$12, email=$13 WHERE github_id=$1;",
         [github_id, login, image, followers, following, public_repos, public_gists, github_url, location, blog, company, created, email])

@@ -1,5 +1,5 @@
 const pgp = require('pg-promise')();
-const db = pgp(process.env.DATABASE_URL);
+const db = pgp(process.env.DATABASE_URL || 'postgres://Jared@localhost:5432/open_source_champ');
 //const db = pgp('postgres://Jared@localhost:5432/open_source_champ');
 
 const bcrypt = require('bcrypt');

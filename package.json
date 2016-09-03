@@ -1,26 +1,21 @@
 {
-  "name": "auth",
-  "version": "1.0.0",
-  "description": "Simple Express Demo.",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+  "name": "open_source_champ_client",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "0.4.0"
   },
-  "keywords": [
-    "auth"
-  ],
-  "author": "Bryan Mytko",
-  "license": "ISC",
   "dependencies": {
-    "JSONStream": "^1.1.2",
-    "bcrypt": "^0.8.7",
-    "body-parser": "^1.15.2",
-    "connect-flash": "^0.1.1",
-    "express": "^4.14.0",
-    "express-session": "^1.14.0",
-    "mustache-express": "^1.2.2",
-    "pg-promise": "^5.2.7",
-    "pg-query-stream": "^1.0.0"
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/react-scripts/config/eslint.js"
   }
 }

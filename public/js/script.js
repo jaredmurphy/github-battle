@@ -5,4 +5,4 @@ $(document).ready(function() {
   ///////////////////////////////////
 
   // activates collapsable menu on click
-
+});

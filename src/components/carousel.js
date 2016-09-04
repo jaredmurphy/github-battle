@@ -11,14 +11,14 @@ class Carousel extends Component {
       { src: "https://github.com/identicons/jcazevedo.png" },
       { src: "https://github.com/identicons/streetlife.png" },
       { src: "https://github.com/identicons/10101010101010101ffffffffa000000.png" },
-      { src: "https://github.com/identicons/japh.png" }, 
+      { src: "https://github.com/identicons/japh.png" },
       { src: "https://raw.githubusercontent.com/1l0/identicon/master/example/identicons/default.png" }
     ];
 
 
     return (
       <div className="carousel" >
-        { carouselImages.map(image => <a className="carousel-item"> <img src={image.src} alt="githubAvatar"/> </a>) }
+        { carouselImages.map((image, i) => <a className="carousel-item"> <img src={image.src} key={i} alt="githubAvatar"/> </a>) }
       </div>
     );
   }

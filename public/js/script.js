@@ -1,0 +1,8 @@
+$(document).ready(function() {
+
+  ///////////////////////////////////
+  ////// materialize functions //////
+  ///////////////////////////////////
+
+  // activates collapsable menu on click
+

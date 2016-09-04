@@ -7,8 +7,8 @@ import BattleNew from './components/battleNew';
 
 export default(
   <Route path="/" component={App}>
-    <IndexRoute component={Carousel} />
-    <Route path="battle" component={BattleNew} />
+    <IndexRoute component={Carousel} navActive={"none"} />
+    <Route path="battle" component={BattleNew} navActive={"battle"}/>
   </Route>
 
 );

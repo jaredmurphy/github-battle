@@ -6,18 +6,20 @@ import addAssertions from 'extend-tape';
 import jsxEquals from 'tape-jsx-equals';
 const test = addAssertions(tape, {jsxEquals});
 
-import BattleNew from '../../src/components/newBattle/BattleNew';
+import PlayerBattleCard from '../../src/components/newBattle/playerBattleCard';
 
-test('--- React Component BattleNew ---', (t) => {
+test('--- React Component PlayerBattleCard ---', (t) => {
   // Shallow rendering
-  const component = createComponent.shallow(< BattleNew /> );
+  const component = createComponent.shallow(< PlayerBattleCard /> );
 
   // Test rendered output
   const renderer = createRenderer();
-  renderer.render(< BattleNew />);
+  renderer.render(< PlayerBattleCard />);
   const result = renderer.getRenderOutput();
   console.log(result)
-  //t.jsxEquals(result, )
+  result.
+  // t.jsxEquals(result,
+  // );
 
   t.end();
 });

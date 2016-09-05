@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Title from './title';
 
 class Carousel extends Component {
 
@@ -18,6 +19,7 @@ class Carousel extends Component {
 
     return (
       <div className="carousel" >
+        < Title name={"Open Source Champion"} />
         { carouselImages.map((image, i) => <a className="carousel-item"> <img src={image.src} key={i} alt="githubAvatar"/> </a>) }
       </div>
     );

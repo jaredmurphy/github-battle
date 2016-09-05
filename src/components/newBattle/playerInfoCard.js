@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 
 class PlayerInfoCard extends Component {
-
   render() {
     const Player = this.props.player === "playerOne" ? "playerOneInfo" : "playerTwoInfo";
     const PlayerInfo = this.props.playerInfo[Player];
@@ -10,7 +9,6 @@ class PlayerInfoCard extends Component {
         return <div>Player One Info Card.</div>;
       }
     const Data = PlayerInfo[Player];
-    console.log("p1", Data)
     return (
       <div>
         <img src={ Data.avatar_url } alt=""/>
@@ -18,7 +16,6 @@ class PlayerInfoCard extends Component {
     );
   }
 }
-
 
 function mapStateToProps(state) {
   return {

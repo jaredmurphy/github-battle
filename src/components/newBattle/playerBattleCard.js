@@ -3,6 +3,7 @@ import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchUser } from '../../actions/index';
 import SearchBar from './searchBar';
+import PlayerInfoCard from './playerInfoCard';
 
 
 
@@ -14,10 +15,15 @@ class PlayerBattleCard extends Component {
       playerLogin: '',
       playerAvatarUrl: ''
     };
+  }
 
+  renderPlayer() {
+    console.log(this.props.playerBattleInfo)
+    return this.props.playerBattleInfo;
   }
 
   render() {
+    console.log(" props there? ",this.props.playerBattleInfo)
     return (
        <div className="col xs12 m6">
          <div className="card">
@@ -29,9 +35,7 @@ class PlayerBattleCard extends Component {
              < SearchBar player={ this.props.player } fetchUser={ this.props.fetchUser }/>
            </div>
 
-           <div className="card-action">
-             <button className="disabled btn player_button player_one_button">Select User </button>
-           </div>
+           < PlayerInfoCard />
 
          </div>
        </div>

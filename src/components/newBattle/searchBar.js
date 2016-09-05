@@ -14,7 +14,7 @@ class SearchBar extends Component {
   playerSearch(searchTerm) {
     this.setState({ searchTerm });
     this.props.fetchUser(this.state.searchTerm);
-    console.log(this.props);
+    //console.log(this.props);
     // this.setState({
     //   playerLogin: data.PromiseValue.payload.data.login,
     //   playerAvatarUrl: data.PromiseValue.payload.data.avatar_url

@@ -3,8 +3,6 @@ import PlayerBattleCard from './playerBattleCard';
 import Title from '../title';
 
 class BattleNew extends Component {
-  get
-
 
   render() {
     return (

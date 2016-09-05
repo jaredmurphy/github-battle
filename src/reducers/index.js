@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import playerBattleInfo from './reducer_playerBattleInfo';
 
 const rootReducer = combineReducers({
-      player: playerBattleInfo
+      playerBattleInfo: playerBattleInfo
 });
 
 export default rootReducer;

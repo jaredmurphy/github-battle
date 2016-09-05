@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchUser } from '../../actions/index';
+import { fetchPlayerOne, fetchPlayerTwo } from '../../actions/index';
 import SearchBar from './searchBar';
-import PlayerInfoCard from './playerInfoCard';
+import PlayerOneInfoCard from './playerOneInfoCard';
+import PlayerTwoInfoCard from './playerTwoInfoCard';
 
 
 
 class PlayerBattleCard extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      playerLogin: '',
-      playerAvatarUrl: ''
-    };
-  }
-
-  renderPlayer() {
-    console.log(this.props.playerBattleInfo)
-    return this.props.playerBattleInfo;
   }
 
   render() {
-    console.log(" props there? ",this.props.playerBattleInfo)
+    const PlayerCard = this.props.player === "playerOne" ? PlayerOneInfoCard : PlayerTwoInfoCard;
+    console.log(this.props)
     return (
        <div className="col xs12 m6">
          <div className="card">
@@ -32,10 +24,11 @@ class PlayerBattleCard extends Component {
              <span className="card-title">{ this.props.player }</span>
              <p>Enter a Github username for { this.props.player }</p>
              <br />
-             < SearchBar player={ this.props.player } fetchUser={ this.props.fetchUser }/>
+             < SearchBar player={ this.props.player }
+             fetchPlayer={ this.props.player === "playerOne" ? this.props.fetchPlayerOne : this.props.fetchPlayerTwo }/>
            </div>
 
-           < PlayerInfoCard />
+           < PlayerCard />
 
          </div>
        </div>
@@ -49,8 +42,8 @@ class PlayerBattleCard extends Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-  console.log(bindActionCreators({ fetchUser }, dispatch))
-  return bindActionCreators({ fetchUser }, dispatch);
+  //console.log(bindActionCreators({ fetchPlayerOne }, dispatch))
+  return bindActionCreators({ fetchPlayerOne, fetchPlayerTwo }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(PlayerBattleCard);

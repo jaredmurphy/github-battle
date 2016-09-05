@@ -5,13 +5,13 @@ import { bindActionCreators } from 'redux';
 class PlayerInfoCard extends Component {
 
   render() {
-    if (!this.props.playerInfo[0]) {
-        return <div>Select a user to get started.</div>;
+    if (!this.props.playerOne) {
+        return <div>Player One Info Card.</div>;
       }
-    console.log(this.props.playerInfo[0])
+    console.log("p1", this.props.playerOne.playerOneInfo)
     return (
       <div>
-        <img src={ this.props.playerInfo[0].avatar_url } />
+        <img src={ this.props.playerOne.playerOneInfo.avatar_url } alt=""/>
       </div>
     );
   }
@@ -20,7 +20,7 @@ class PlayerInfoCard extends Component {
 
 function mapStateToProps(state) {
   return {
-    playerInfo: state.playerBattleInfo
+    playerOne: state.playerOneInfo
   }
 }
 

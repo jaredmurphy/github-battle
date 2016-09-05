@@ -13,7 +13,7 @@ class SearchBar extends Component {
 
   playerSearch(searchTerm) {
     this.setState({ searchTerm });
-    this.props.fetchPlayer(this.state.searchTerm);
+    this.props.fetchPlayer(this.state.searchTerm, this.props.player);
   }
 
   render() {

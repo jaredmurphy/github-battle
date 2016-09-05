@@ -11,7 +11,8 @@ class PlayerInfoCard extends Component {
     const Data = PlayerInfo[Player];
     return (
       <div>
-        <img src={ Data.avatar_url } alt=""/>
+        <h5>{ Data.login }</h5>
+        <img src={ Data.avatar_url } alt="" style={ { maxWidth: "200px"}  }/>
       </div>
     );
   }

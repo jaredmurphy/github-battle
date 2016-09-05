@@ -7,20 +7,12 @@ export const FETCH_PLAYER_ONE = "FETCH_PLAYER_ONE";
 export const FETCH_PLAYER_TWO = "FETCH_PLAYER_TWO";
 
 
-export function fetchPlayerOne(username){
+export function fetchPlayer(username, player){
   const url = `${RootUrl}${username}?client_id=${GITHUB_ID}&client_secret=${GITHUB_SECRET}`;
   const request = axios.get(url);
+  const TYPE = player === "playerOne" ? FETCH_PLAYER_ONE : FETCH_PLAYER_TWO;
   return {
-    type: FETCH_PLAYER_ONE,
-    payload: request
-  };
-}
-
-export function fetchPlayerTwo(username){
-  const url = `${RootUrl}${username}?client_id=${GITHUB_ID}&client_secret=${GITHUB_SECRET}`;
-  const request = axios.get(url);
-  return {
-    type: FETCH_PLAYER_TWO,
+    type: TYPE,
     payload: request
   };
 }

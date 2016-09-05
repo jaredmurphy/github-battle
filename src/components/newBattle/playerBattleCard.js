@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchPlayerOne, fetchPlayerTwo } from '../../actions/index';
+import { fetchPlayer } from '../../actions/index'
 import SearchBar from './searchBar';
 import PlayerInfoCard from './playerInfoCard';
 
@@ -9,7 +9,7 @@ class PlayerBattleCard extends Component {
 
   render() {
     const Player = this.props.player;
-    const FetchMethod = Player === "playerOne" ? this.props.fetchPlayerOne : this.props.fetchPlayerTwo;
+    const FetchMethod = this.props.fetchPlayer;
 
     return (
        <div className="col xs12 m6">
@@ -33,7 +33,7 @@ class PlayerBattleCard extends Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchPlayerOne, fetchPlayerTwo }, dispatch);
+  return bindActionCreators({ fetchPlayer }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(PlayerBattleCard);

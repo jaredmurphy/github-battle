@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Title from './title';
 
+
 class Carousel extends Component {
 
 

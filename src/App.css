@@ -60,3 +60,7 @@ img.select_user {
 .player_card {
   height: 300px;
 }
+
+.playerBattleImg {
+  max-width: 100px;
+}

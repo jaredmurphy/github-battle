@@ -8,7 +8,7 @@ class BattleNew extends Component {
     return (
       <div>
         < Title name={"BATTLE"} />
-        <div id="players" className="col s6 m6 row">
+        <div id="players" className="col s6 m6 row center-align">
           < PlayerBattleCard player={"playerOne"} />
           < PlayerBattleCard player={"playerTwo"} />
         </div>

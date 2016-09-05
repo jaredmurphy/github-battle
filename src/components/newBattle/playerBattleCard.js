@@ -9,23 +9,22 @@ class PlayerBattleCard extends Component {
 
   render() {
     const Player = this.props.player;
-    const FetchMethod = this.props.fetchPlayer;
 
     return (
-       <div className="col xs12 m6">
-         <div className="card">
+
+         <div className="card col s12 m6">
 
            <div className="card-content player_card">
              <span className="card-title">{ Player }</span>
              <p>Enter a Github username for { Player }</p>
              <br />
-             < SearchBar player={ Player } fetchPlayer={ FetchMethod }/>
+             < SearchBar player={ Player } fetchPlayer={ this.props.fetchPlayer }/>
            </div>
 
            < PlayerInfoCard player={ Player }/>
 
          </div>
-       </div>
+
 
     );
   }

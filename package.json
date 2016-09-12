@@ -36,7 +36,8 @@
     "redux-promise": "^0.5.3",
     "swipe-js-iso": "^2.0.3",
     "tape": "^4.6.0",
-    "tape-jsx-equals": "^1.0.0"
+    "tape-jsx-equals": "^1.0.0",
+    "testdom": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

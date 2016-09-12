@@ -15,6 +15,7 @@
     "chai": "^3.5.0",
     "cheerio": "^0.22.0",
     "enzyme": "^2.4.1",
+    "expect": "^1.20.2",
     "extend-tape": "^1.2.0",
     "faucet": "0.0.1",
     "install": "^0.8.1",
@@ -42,7 +43,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "babel-tape-runner test/**/*.js | faucet",
+    "test": "mocha --compilers js:babel-register --recursive",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

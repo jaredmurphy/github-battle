@@ -1,10 +1,13 @@
+import expect from 'expect';
+import * as actions from '../../src/actions/index';
 
-
-var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
-    });
-  });
-});
+describe('actions', () => {
+  it('should create an action to get player info', () => {
+    const text = 'FETCH_PLAYER_ONE'
+    const expectedAction = {
+      type: actions.FETCH_PLAYER_ONE,
+      text
+    }
+    expect(actions.FETCH_PLAYER(text)).toEqual(expectedAction)
+  })
+})

@@ -6,7 +6,7 @@ class PlayerInfoCard extends Component {
     const Player = this.props.player === "playerOne" ? "playerOneInfo" : "playerTwoInfo";
     const PlayerInfo = this.props.playerInfo[Player];
     if (!PlayerInfo) {
-        return <div>Player One Info Card.</div>;
+        return <div>Select a Player</div>;
       }
     const Data = PlayerInfo[Player];
     return (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+//import { Link } from 'react-router';
 
 
 class PlayerDetails extends Component {
@@ -11,7 +11,7 @@ class PlayerDetails extends Component {
           <h4>{ this.props.status }: { this.props.login }</h4>
           <p> Score: { this.props.score } </p>
           <br />
-          <img className="select_user" src={ this.props.image } style={ { maxWidth: "200px"} } />
+          <img className="select_user" src={ this.props.image } role="presentation" style={ { maxWidth: "200px"} } />
         </div>
 
         <div className="card-action">

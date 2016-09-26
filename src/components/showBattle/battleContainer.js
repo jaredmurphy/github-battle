@@ -17,7 +17,7 @@ class BattleContainer extends Component {
            </ul>
          </div>
 
-         < BattleResults />
+         < BattleResults id={this.props.params.id}/>
 
          <div id="more_details" className="col s12">
            <span className="card-title">Details are not available at this time </span>

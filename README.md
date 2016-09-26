@@ -9,3 +9,6 @@ In first release 1.0
 #### Score is based on Github API data for each user
 
 ##### Currently includes battle mode and leaderboard
+
+### Rebuilding in React.js
+Latest updates are not yet live, but can be found: [here](https://github.com/jaredmurphy/open-source-champion/tree/feature/react_client)

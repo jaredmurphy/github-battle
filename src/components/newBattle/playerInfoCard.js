@@ -2,6 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class PlayerInfoCard extends Component {
+  displayResponse = (Data) => {
+    var login, url, messageClass;
+      if (!Data) {
+        login = "Oops! Lets try that again"; 
+        url = ""; 
+        messageClass = "red-text";
+      } else {
+        login = Data.login; 
+        url = Data.avatar_url; 
+        messageClass = "";
+      }
+      return (
+        <div>
+          <h5 className={messageClass}>{ login }</h5>
+          <img src={ url } alt="" style={ { maxWidth: "200px"}  }/>
+        </div>
+      );
+  } // ends displayResponse
+
   render() {
     const Player = this.props.player === "playerOne" ? "playerOneInfo" : "playerTwoInfo";
     const PlayerInfo = this.props.playerInfo[Player];
@@ -11,10 +30,9 @@ class PlayerInfoCard extends Component {
     const Data = PlayerInfo[Player];
     return (
       <div>
-        <h5>{ Data.login }</h5>
-        <img src={ Data.avatar_url } alt="" style={ { maxWidth: "200px"}  }/>
+        { this.displayResponse(Data) }
       </div>
-    );
+    )
   }
 }
 

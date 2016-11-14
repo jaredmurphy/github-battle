@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.carousel {
+}
+
+.carousel-item img{
+  max-width: 20%;
+  min-width: 20%;
+
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.center-block { float: none }
+
+.nav-wrapper {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.about_card {
+  margin-top: 25px;
+}
+
+img.select_user {
+  max-height: 120px;
+}
+
+#warningMessage {
+  color: red;
+}
+
+.center {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.disabled_input {
+  pointer-events: none;
+}
+
+#battle_button {
+  display: none;
+}
+
+.leaderboard_image {
+  max-height: 80px;
+}
+.leaderboard_cards div {
+  height: 170px;
+}
+
+.player_card {
+  height: 300px;
+}
+
+.playerBattleImg {
+  max-width: 100px;
+}

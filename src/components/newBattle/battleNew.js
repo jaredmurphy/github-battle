@@ -8,7 +8,7 @@ class BattleNew extends Component {
     console.log("BattleReady", this.props.playerInfo.playerOneInfo, this.props.playerInfo.playerTwoInfo);
     if (this.props.playerInfo.playerOneInfo && this.props.playerInfo.playerTwoInfo) {
       if (this.props.playerInfo.playerOneInfo.playerOneInfo && this.props.playerInfo.playerTwoInfo.playerTwoInfo) {
-        return <button className="waves-effect waves-light btn">Battle Now</button>;
+        return <button className="waves-effect waves-light btn" onClick={this.getScore}>Battle Now</button>;
       } else {
         return <div></div>;
       }

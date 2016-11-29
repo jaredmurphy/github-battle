@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchPlayer } from '../../actions/index'
+import { fetchPlayer } from '../../actions/index';
 import SearchBar from './searchBar';
 import PlayerInfoCard from './playerInfoCard';
 

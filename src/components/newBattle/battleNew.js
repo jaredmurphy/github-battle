@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PlayerBattleCard from './playerBattleCard';
+import { createBattle } from '../../actions/index';
 import Title from '../title';
 
 class BattleNew extends Component {
@@ -8,7 +9,12 @@ class BattleNew extends Component {
     console.log("BattleReady", this.props.playerInfo.playerOneInfo, this.props.playerInfo.playerTwoInfo);
     if (this.props.playerInfo.playerOneInfo && this.props.playerInfo.playerTwoInfo) {
       if (this.props.playerInfo.playerOneInfo.playerOneInfo && this.props.playerInfo.playerTwoInfo.playerTwoInfo) {
-        return <button className="waves-effect waves-light btn" onClick={this.getScore}>Battle Now</button>;
+        return (
+          <button className="waves-effect waves-light btn"
+            onClick={createBattle(this.props.playerInfo.playerOneInfo.playerOneInfo.id, this.props.playerInfo.playerTwoInfo.playerTwoInfo.id)}>
+            Battle Now
+          </button>
+        );
       } else {
         return <div></div>;
       }
@@ -22,7 +28,7 @@ class BattleNew extends Component {
         <div id="players" className="col s6 m6 row center-align">
           < PlayerBattleCard player={"playerOne"} />
           < PlayerBattleCard player={"playerTwo"} />
-          <div> { this.battleReady() } </div> 
+          <div> { this.battleReady() } </div>
         </div>
       </div>
     );

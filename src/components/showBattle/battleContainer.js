@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
-//import { Link } from 'react-router';
+import React from 'react';
+import { Link } from 'react-router';
 import Title from '../title';
 import BattleResults from './battleResults';
 
-class BattleContainer extends Component {
+const BattleContainer = (props) => {
 
-  render() {
+  // render() {
+           // <div id="more_details" className="col s12">
+         //   <span className="card-title">Details are not available at this time </span>
+         // </div>
     return (
       <div>
         <Title name={"We have a Winner"} />
@@ -17,15 +20,17 @@ class BattleContainer extends Component {
            </ul>
          </div>
 
-         < BattleResults id={this.props.params.id}/>
+         <BattleResults id={props.params.id}/>
 
-         <div id="more_details" className="col s12">
-           <span className="card-title">Details are not available at this time </span>
-         </div>
+         <Link to="/battle">
+           <button className="waves-effect waves-light btn center-align">
+             Play Again
+           </button>
+         </Link>
        </div>
       </div>
     );
-  }
+  //}
 }
 
 export default BattleContainer;

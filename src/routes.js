@@ -9,7 +9,7 @@ export default(
   <Route path="/" component={App}>
     <IndexRoute component={Carousel} navActive={"none"} />
     <Route path="battle" component={BattleNew} navActive={"battle"}/>
-    <Route path="battle/:id" component={BattleContainer} />
+    <Route path="battles/:id" component={BattleContainer} />
   </Route>
 
 );

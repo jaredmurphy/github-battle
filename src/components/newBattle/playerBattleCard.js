@@ -18,10 +18,10 @@ class PlayerBattleCard extends Component {
              <span className="card-title">{ Player }</span>
              <p>Enter a Github username for { Player }</p>
              <br />
-             < SearchBar player={ Player } fetchPlayer={ this.props.fetchPlayer }/>
+             <SearchBar player={ Player } fetchPlayer={ this.props.fetchPlayer }/>
            </div>
 
-           < PlayerInfoCard player={ Player }/>
+           <PlayerInfoCard player={ Player }/>
 
          </div>
 

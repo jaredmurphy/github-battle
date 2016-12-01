@@ -11,18 +11,14 @@ class PlayerBattleCard extends Component {
     const Player = this.props.player;
 
     return (
-
          <div className="card col s12 m6">
-
            <div className="card-content player_card">
              <span className="card-title">{ Player }</span>
              <p>Enter a Github username for { Player }</p>
              <br />
              <SearchBar player={ Player } fetchPlayer={ this.props.fetchPlayer }/>
            </div>
-
            <PlayerInfoCard player={ Player }/>
-
          </div>
 
 

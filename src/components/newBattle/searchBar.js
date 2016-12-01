@@ -18,7 +18,12 @@ class SearchBar extends Component {
 
   render() {
 
-    const onInputChange = _.debounce((username) => { this.playerSearch(username)}, 400)
+    const onInputChange = _.debounce((username) => {
+      if (username !== '') {
+      this.playerSearch(username)
+      }
+    }, 400);
+
     return (
       <input id={`${ this.props.player }_input`} className="player_input" placeholder="Github username"
         val={ this.state.searchTerm }

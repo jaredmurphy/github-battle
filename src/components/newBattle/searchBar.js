@@ -8,7 +8,6 @@ class SearchBar extends Component {
     this.state = {
       searchTerm: ''
     };
-
   }
 
   playerSearch(searchTerm) {
@@ -17,7 +16,6 @@ class SearchBar extends Component {
   }
 
   render() {
-
     const onInputChange = _.debounce((username) => {
       if (username !== '') {
       this.playerSearch(username)

@@ -4,11 +4,6 @@ import Title from '../title';
 import BattleResults from './battleResults';
 
 const BattleContainer = (props) => {
-
-  // render() {
-           // <div id="more_details" className="col s12">
-         //   <span className="card-title">Details are not available at this time </span>
-         // </div>
     return (
       <div>
         <Title name={"We have a Winner"} />
@@ -22,7 +17,7 @@ const BattleContainer = (props) => {
 
          <BattleResults id={props.params.id}/>
 
-         <Link to="/battle">
+         <Link to="/">
            <button className="waves-effect waves-light btn center-align">
              Play Again
            </button>
@@ -30,7 +25,6 @@ const BattleContainer = (props) => {
        </div>
       </div>
     );
-  //}
 }
 
 export default BattleContainer;

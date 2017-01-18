@@ -2,13 +2,8 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 
-// localhost api
-const RootUrl = "http://localhost:3001/api/v1/"
-
-// github api
-// const RootUrl = "https://api.github.com/users/"
-// const GITHUB_ID = process.env.GITHUB_ID;
-// const GITHUB_SECRET = process.env.GITHUB_SECRET;
+const rootUrl = "https://open-source-champ-api.herokuapp.com/api/v1/";
+//const rootUrl = "http://localhost:3001/api/v1/";
 
 export const FETCH_PLAYER_ONE = "FETCH_PLAYER_ONE";
 export const FETCH_PLAYER_TWO = "FETCH_PLAYER_TWO";
@@ -19,12 +14,7 @@ export const FETCH_LOSER = "FETCH_LOSER";
 
 
 export function fetchPlayer(username, player){
-  // localhost api
-  const url = `${RootUrl}search?login=${username}`;
-
-  // github api
-  //const url = `${RootUrl}${username}?client_id=${GITHUB_ID}&client_secret=${GITHUB_SECRET}`;
-
+  const url = `${rootUrl}search?login=${username}`;
   const request = axios.get(url);
   const TYPE = player === "playerOne" ? FETCH_PLAYER_ONE : FETCH_PLAYER_TWO;
   return {
@@ -34,12 +24,7 @@ export function fetchPlayer(username, player){
 }
 
 export function fetchPlayerById(playerId, player){
-
-  // localhost api
-  const url = `${RootUrl}players/${playerId}`;
-  // github api
-  //const url = `${RootUrl}${username}?client_id=${GITHUB_ID}&client_secret=${GITHUB_SECRET}`;
-
+  const url = `${rootUrl}players/${playerId}`;
   const request = axios.get(url);
   const TYPE = player === "winner" ? FETCH_WINNER : FETCH_LOSER;
   return {
@@ -49,7 +34,7 @@ export function fetchPlayerById(playerId, player){
 }
 
 export function fetchBattle(id){
-  const url = `${RootUrl}battles/${id}`;
+  const url = `${rootUrl}battles/${id}`;
   const request = axios.get(url);
   const TYPE = FETCH_BATTLE;
   return {
@@ -59,7 +44,7 @@ export function fetchBattle(id){
 }
 
 export function createBattle(playerOneId, playerTwoId) {
-  const url = `${RootUrl}battles/`;
+  const url = `${rootUrl}battles/`;
   axios({
      method: 'post',
      url: url,
@@ -69,14 +54,10 @@ export function createBattle(playerOneId, playerTwoId) {
         player_two: playerTwoId
       }
     }
-  }).then(function(response){
+  }).then(response => {
     const battleId = response.data.id;
     browserHistory.push(`/battles/${battleId}`);
+  }).catch(error => {
+    console.log(error);
   });
-
-  // const TYPE = CREATE_BATTLE;
-  // return {
-  //   type: TYPE,
-  //   payload: request
-  // };
 }

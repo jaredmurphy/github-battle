@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-
 const rootUrl = "https://open-source-champ-api.herokuapp.com/api/v1/";
 //const rootUrl = "http://localhost:3001/api/v1/";
 
@@ -11,6 +10,7 @@ export const FETCH_BATTLE = "FETCH_BATTLE";
 export const CREATE_BATTLE = "CREATE_BATTLE";
 export const FETCH_WINNER = "FETCH_WINNER";
 export const FETCH_LOSER = "FETCH_LOSER";
+export const FETCH_TOP_BATTLES = "FETCH_TOP_BATTLES";
 
 
 export function fetchPlayer(username, player){

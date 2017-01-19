@@ -9,8 +9,6 @@ class BattleNew extends Component {
   battleReady = () => {
     if (this.props.playerInfo.playerOneInfo && this.props.playerInfo.playerTwoInfo) {
       if (this.props.playerInfo.playerOneInfo.playerOneInfo && this.props.playerInfo.playerTwoInfo.playerTwoInfo) {
-        console.log("BattleReady", this.props.playerInfo.playerOneInfo, this.props.playerInfo.playerTwoInfo);
-
         return (
           <button className="waves-effect waves-light btn"
             onClick={() => {createBattle(this.props.playerInfo.playerOneInfo.playerOneInfo.id, this.props.playerInfo.playerTwoInfo.playerTwoInfo.id)}}>
@@ -26,7 +24,7 @@ class BattleNew extends Component {
   render() {
     return (
       <div>
-        <Title name={"BATTLE"} />
+        <Title name="BATTLE" />
         <div id="players" className="col s6 m6 row center-align">
           <PlayerBattleCard player={"playerOne"} />
           <PlayerBattleCard player={"playerTwo"} />

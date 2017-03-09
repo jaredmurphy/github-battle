@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router';
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PlayerDetails from './playerDetails';
@@ -7,7 +6,6 @@ import { fetchBattle } from '../../actions/index';
 import { fetchPlayerById } from '../../actions/index';
 
 class BattleResults extends Component {
-
   componentWillMount(){
     this.props.fetchBattle(this.props.id).then(() => {
       this.props.fetchPlayerById(this.props.currentBattle.currentBattle.winner_id, 'winner').then(() => {
@@ -18,11 +16,9 @@ class BattleResults extends Component {
 
   render() {
     if (this.props.currentBattle && this.props.winner && this.props.loser) {
-      const { currentBattle, winner_score, loser_score } = this.props.currentBattle.currentBattle;
+      const { winner_score, loser_score } = this.props.currentBattle.currentBattle;
       const { winner } = this.props.winner;
       const { loser } = this.props.loser;
-
-      console.log('there is a current battle', winner);
 
       return (
         <div id="battle_results" className="col s12">
@@ -51,8 +47,16 @@ class BattleResults extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state);
-  return { currentBattle: state.currentBattle, winner: state.winner, loser: state.loser };
+  console.log("+++++++++", state);
+  if (state.currentBattle) {
+    return { 
+      currentBattle: state.currentBattle, 
+      winner: state.winner, 
+      loser: state.loser 
+     };
+  }
+
+  return {};
 }
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchBattle, fetchPlayerById }, dispatch);

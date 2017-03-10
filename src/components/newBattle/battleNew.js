@@ -7,17 +7,17 @@ import Title from '../title';
 class BattleNew extends Component {
 
   battleReady = () => {
-    if (this.props.playerInfo.playerOneInfo && this.props.playerInfo.playerTwoInfo) {
-      if (this.props.playerInfo.playerOneInfo.playerOneInfo && this.props.playerInfo.playerTwoInfo.playerTwoInfo) {
-        return (
-          <button className="waves-effect waves-light btn"
-            onClick={() => {createBattle(this.props.playerInfo.playerOneInfo.playerOneInfo.id, this.props.playerInfo.playerTwoInfo.playerTwoInfo.id)}}>
-            Battle Now
-          </button>
-        );
-      } else {
-        return <div></div>;
-      }
+    const { playerOneInfo, playerTwoInfo } = this.props.playerInfo;
+
+    if (playerOneInfo && playerTwoInfo) {
+      return (
+        <button className="waves-effect waves-light btn"
+          onClick={() => createBattle(playerOneInfo.id, playerTwoInfo.id) }>
+          Battle Now
+        </button>
+      );
+    } else {
+      return <div></div>;
     }
   }
 

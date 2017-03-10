@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class PlayerInfoCard extends Component {
   displayResponse = (Data) => {
-    var login, url, messageClass;
+    let login, url, messageClass;
       if (!Data) {
         login = "Oops! Lets try that again"; 
         url = ""; 
@@ -19,18 +19,17 @@ class PlayerInfoCard extends Component {
           <img src={ url } alt="" style={ { maxWidth: "200px"}  }/>
         </div>
       );
-  } // ends displayResponse
+  } 
 
   render() {
     const Player = this.props.player === "playerOne" ? "playerOneInfo" : "playerTwoInfo";
     const PlayerInfo = this.props.playerInfo[Player];
     if (!PlayerInfo) {
         return <div>Select a Player</div>;
-      }
-    const Data = PlayerInfo[Player];
+    }
     return (
       <div>
-        { this.displayResponse(Data) }
+        { this.displayResponse(PlayerInfo) }
       </div>
     )
   }

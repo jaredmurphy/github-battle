@@ -8,19 +8,24 @@ import { fetchPlayerById } from '../../actions/index';
 class BattleResults extends Component {
 
   componentWillMount(){
-    this.props.fetchBattle(this.props.id)
+    const { id, fetchBattle, fetchPlayerById, currentBattle } = this.props;
+    const { winner_id, loser_id } = currentBattle;
+
+    // get battle, winner, and loser
+    fetchBattle(id)
       .then(() => {
-        this.props.fetchPlayerById(this.props.currentBattle.winner_id, 'winner');
-        this.props.fetchPlayerById(this.props.currentBattle.loser_id, 'loser');
-      })
-      .catch(err => console.log('!!!!!!', err));
+        fetchPlayerById(winner_id, 'winner')
+          .then(() => {
+            fetchPlayerById(loser_id, 'loser')
+          }).catch(err => console.log('!!!!!!!', err));
+      }).catch(err => console.log('!!!!!!', err));
   }
 
   render() {
     if (this.props.currentBattle && this.props.winner && this.props.loser) {
       const { currentBattle, winner_score, loser_score } = this.props.currentBattle;
-      const { winner, loser } = this.props;
-      console.log("++++++", this.props);
+      const { winner } = this.props.winner;
+      const { loser } = this.props.loser;
 
       return (
         <div id='battle_results' className='col s12'>

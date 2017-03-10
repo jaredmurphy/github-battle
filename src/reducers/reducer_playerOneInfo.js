@@ -4,7 +4,7 @@ export default function(state = null, action) {
   switch(action.type) {
     case FETCH_PLAYER_ONE:
       //console.log("++++++++++", action.payload.data);
-      return { ...state, playerOneInfo: action.payload.data  };
+      return action.payload.data;
     default:
       return state;
   }

@@ -6,10 +6,8 @@ import SearchBar from './searchBar';
 import PlayerInfoCard from './playerInfoCard';
 
 class PlayerBattleCard extends Component {
-
   render() {
     const Player = this.props.player;
-
     return (
          <div className="card col s12 m6">
            <div className="card-content player_card">
@@ -20,12 +18,9 @@ class PlayerBattleCard extends Component {
            </div>
            <PlayerInfoCard player={ Player }/>
          </div>
-
-
     );
   }
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchPlayer }, dispatch);

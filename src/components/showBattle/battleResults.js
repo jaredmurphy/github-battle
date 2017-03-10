@@ -19,7 +19,6 @@ class BattleResults extends Component {
     if (this.props.currentBattle && this.props.winner && this.props.loser) {
       const { currentBattle, winner_score, loser_score } = this.props.currentBattle;
       const { winner, loser } = this.props;
-      console.log("++++++", this.props);
 
       return (
         <div id='battle_results' className='col s12'>
@@ -48,7 +47,6 @@ class BattleResults extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state);
   return { 
     currentBattle: state.currentBattle, 
     winner: state.winner, 

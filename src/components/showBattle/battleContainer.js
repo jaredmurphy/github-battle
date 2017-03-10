@@ -11,7 +11,6 @@ const BattleContainer = (props) => {
          <div className="col s12">
            <ul className="tabs">
              <li className="tab col s6"><a className="active" href="#battle_results">Results</a></li>
-             <li className="tab col s6"><a href="#more_details">More Details</a></li>
            </ul>
          </div>
 

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router';
-
 
 class PlayerDetails extends Component {
-
   render() {
     return (
       <div className="card col s12 m6">
@@ -17,7 +14,6 @@ class PlayerDetails extends Component {
         <div className="card-action">
           <a href={ this.props.url }>Github</a>
         </div>
-
       </div>
     );
   }

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 class SearchBar extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       searchTerm: ''

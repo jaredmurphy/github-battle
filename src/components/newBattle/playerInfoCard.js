@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class PlayerInfoCard extends Component {
-  displayResponse = (Data) => {
+  getInfo(Data){
     let login, url, messageClass;
       if (!Data) {
         login = "Oops! Lets try that again"; 
@@ -13,6 +13,11 @@ class PlayerInfoCard extends Component {
         url = Data.avatar_url; 
         messageClass = "";
       }
+      return { login, url, messageClass };
+  }
+
+  displayResponse(Data){
+      const { url, login, messageClass } = this.getInfo(Data);
       return (
         <div>
           <h5 className={messageClass}>{ login }</h5>

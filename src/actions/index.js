@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const rootUrl = "https://open-source-champ-api.herokuapp.com/api/v1/";
-//const rootUrl = "http://localhost:3001/api/v1/";
+//const rootUrl = "https://open-source-champ-api.herokuapp.com/api/v1/";
+const rootUrl = "http://localhost:3001/api/v1/";
 
 export const FETCH_PLAYER_ONE = "FETCH_PLAYER_ONE";
 export const FETCH_PLAYER_TWO = "FETCH_PLAYER_TWO";

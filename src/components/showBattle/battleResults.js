@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PlayerDetails from './playerDetails';
-import { fetchBattle } from '../../actions/index';
+import { fetchBattle } from '../../actions';
 
 class BattleResults extends Component {
     componentDidMount() {
@@ -13,7 +13,6 @@ class BattleResults extends Component {
     render() {
         if (this.props.currentBattle) {
             const { winner_score, loser_score, winner, loser } = this.props.currentBattle;
-
             return ( 
               <div id='battle_results' className='col s12'>
                 <div className='row' >

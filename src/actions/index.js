@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-//const rootUrl = "https://open-source-champ-api.herokuapp.com/api/v1/";
-const rootUrl = "http://localhost:3001/api/v1/";
+const rootUrl = "https://open-source-champ-api.herokuapp.com/api/v1/";
+//const rootUrl = "http://localhost:3001/api/v1/";
 
 export const FETCH_PLAYER_ONE = "FETCH_PLAYER_ONE";
 export const FETCH_PLAYER_TWO = "FETCH_PLAYER_TWO";
 export const FETCH_BATTLE = "FETCH_BATTLE";
 export const CREATE_BATTLE = "CREATE_BATTLE";
 export const FETCH_TOP_BATTLES = "FETCH_TOP_BATTLES";
+export const FETCH_RECENT_BATTLES = "FETCH_RECENT_BATTLES";
 
 
 export function fetchPlayer(username, player){
@@ -49,3 +50,14 @@ export function createBattle(playerOneId, playerTwoId) {
     console.log(error);
   });
 }
+
+export function fetchRecentBattles(){
+  const url = `${rootUrl}battles/lists/recent`;
+  const request = axios.get(url);
+  const TYPE = FETCH_RECENT_BATTLES;
+  return {
+    type: TYPE,
+    payload: request
+  };
+}
+

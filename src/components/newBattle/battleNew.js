@@ -5,10 +5,8 @@ import { createBattle } from '../../actions/index';
 import Title from '../title';
 
 class BattleNew extends Component {
-
   battleReady = () => {
     const { playerOneInfo, playerTwoInfo } = this.props.playerInfo;
-
     if (playerOneInfo && playerTwoInfo) {
       return (
         <button className="waves-effect waves-light btn"

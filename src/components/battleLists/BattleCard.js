@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-
+import { numberWithCommas } from '../../helpers'; 
 
 class BattleCard extends Component {
+
   renderPlayer(position, data, score) {
     const align = position === "loser" ? "right-align" : ""; 
     return (
@@ -11,10 +12,12 @@ class BattleCard extends Component {
             <img style={{maxWidth: '120px'}} src={data.avatar_url} alt="winner" />
             <p className="white-text" style={{marginTop: 0, marginBottom: '2px'}}> {data.login } </p>
           </a>
-          <h5 className="white-text" style={{marginTop: 0}}> { score } </h5>
+          <h5 className="white-text" style={{marginTop: 0}}> {  numberWithCommas(score) } </h5>
         </div>
      );
-  } render() {
+  } 
+  
+  render() {
     const { winner_score, loser_score, winner, loser, created_at } = this.props.battle;
     return (
       <div className="col s12">

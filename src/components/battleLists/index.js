@@ -27,7 +27,6 @@ class BattleList extends Component {
     
     render() {
       const page = this.props.params.page.replace(/\b\w/g, letter => letter.toUpperCase());
-      console.log(this.props.recent);
       return (
         <div>
           <Title name={ `${page} Battles` } />

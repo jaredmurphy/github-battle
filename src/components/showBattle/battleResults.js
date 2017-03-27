@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PlayerDetails from './playerDetails';
 import { fetchBattle } from '../../actions';
+import { numberWithCommas } from '../../helpers';
 
 class BattleResults extends Component {
     componentDidMount() {
@@ -19,14 +20,14 @@ class BattleResults extends Component {
                   <PlayerDetails 
                     status={ 'Winner' }
                     login={ winner.login }
-                    score={ winner_score }
+                    score={ numberWithCommas(winner_score) }
                     url={ `https://github.com/${winner.login}` }
                     image={ winner.avatar_url } /> 
                   
                   <PlayerDetails 
                     status={ 'Loser' }
                     login={ loser.login }
-                    score={ loser_score }
+                    score={ numberWithCommas(loser_score) }
                     url={ `https://github.com/${loser.login}` }
                     image={ loser.avatar_url } /> 
                 </div> 

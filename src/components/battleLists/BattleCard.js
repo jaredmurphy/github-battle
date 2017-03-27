@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import moment from 'moment';
 
 
@@ -8,15 +7,14 @@ class BattleCard extends Component {
     const align = position === "loser" ? "right-align" : ""; 
     return (
         <div className={`col s4 ${align}`} >
-          <Link to={`https://github.com/${data.login}`} >
+          <a href={`https://github.com/${data.login}`} >
             <img style={{maxWidth: '120px'}} src={data.avatar_url} alt="winner" />
             <p className="white-text" style={{marginTop: 0, marginBottom: '2px'}}> {data.login } </p>
-          </Link>
+          </a>
           <h5 className="white-text" style={{marginTop: 0}}> { score } </h5>
         </div>
      );
-  }
-  render() {
+  } render() {
     const { winner_score, loser_score, winner, loser, created_at } = this.props.battle;
     return (
       <div className="col s12">
